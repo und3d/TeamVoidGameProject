@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public void ChangeSceneToTest()
+    public void ChangeScene(string sceneName)
     {
-        Debug.Log("Attempting to load TestScene");  // Debugging line
-        SceneManager.LoadScene("TestScene");
+        Debug.Log("Attempting to load " + sceneName);  // Debugging line
+        SceneManager.LoadScene(sceneName);
     }
 }
