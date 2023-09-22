@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class MoveSpriteUp : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public float speed = 10f; //Speed
+    public float lifetime = 10f; //is the life of the bullet
 
     void Update()
     {
@@ -15,5 +16,12 @@ public class MoveSpriteUp : MonoBehaviour
         //Updating Location
         transform.position = newPosition;
     }
-}
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Astroid")
+        {
+            Destroy(gameObject);
+        }
+    }
+}
