@@ -2,26 +2,29 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem destroyedParticles;
-    public int size = 3;
+    public int type;
+    public float size;
+    public float speed;
 
-    public GameManager gameManager;
+    private float[] asteroidSizes = { 0.75f, 1.15f, 1.4f };
+    private int[] asteroidSpeeds = { 5, 3, 1 };
 
     private void Start()
     {
-        // Scale based on the size.
-        transform.localScale = 0.5f * size * Vector3.one;
+        //Asteroid Type
+        type = Random.Range(0, 3);
+        size = asteroidSizes[type];
+        speed = asteroidSpeeds[type];
 
-        // Add movement, bigger asteroids are slower.
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        Vector2 direction = new Vector2(Random.value, Random.value).normalized;
-        float spawnSpeed = Random.Range(4f - size, 5f - size);
-        rb.AddForce(direction * spawnSpeed, ForceMode2D.Impulse);
+        Rigidbody2D _rigidbody = GetComponent<Rigidbody2D>();
 
-        // Register creation
-        gameManager.asteroidCount++;
+        transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)));
+        transform.localScale = Vector3.one * size;
+
+        _rigidbody.velocity = transform.up * speed;
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Asteroids are only destroyed with bullets.
@@ -34,21 +37,20 @@ public class Asteroid : MonoBehaviour
             Destroy(collision.gameObject);
 
             // If size > 1 spawn 2 smaller asteroids of size-1.
-            if (size > 1)
+            if (size > 2)
             {
                 for (int i = 0; i < 2; i++)
                 {
                     Asteroid newAsteroid = Instantiate(this, transform.position, Quaternion.identity);
                     newAsteroid.size = size - 1;
                     newAsteroid.gameManager = gameManager;
+                    gameManager.asteroidCount += 2;
                 }
             }
-
-            // Spawn particles on destruction.
-            Instantiate(destroyedParticles, transform.position, Quaternion.identity);
 
             // Destroy this asteroid.
             Destroy(gameObject);
         }
     }
+    */
 }

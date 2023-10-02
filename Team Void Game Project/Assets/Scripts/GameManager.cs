@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -77,3 +78,4 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 }
+*/
