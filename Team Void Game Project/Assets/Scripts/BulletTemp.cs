@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Bullet : MonoBehaviour
+public class BulletTemp : MonoBehaviour
 {
     public float speed = 10f; //Speed
     public float lifetime = 10f; //is the life of the bullet
