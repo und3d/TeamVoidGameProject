@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid")
         {
-            Destroy(gameObject);
+           /* Destroy(gameObject);  DEBUG FOR TESTING ASTEROID SPLITTING */
         }
     }
 

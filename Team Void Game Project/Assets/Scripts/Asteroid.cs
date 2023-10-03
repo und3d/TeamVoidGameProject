@@ -7,7 +7,7 @@ public class Asteroid : MonoBehaviour
     public float speed;
 
     private float[] asteroidSizes = { 0.75f, 1.15f, 1.4f };
-    private int[] asteroidSpeeds = { 5, 3, 1 };
+    public int[] asteroidSpeeds = { 5, 3, 1 };
 
     private void Start()
     {
@@ -29,6 +29,11 @@ public class Asteroid : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
+            TempAsteroidSplitting splittingScript = GetComponent<TempAsteroidSplitting>();
+            if (splittingScript != null)
+            {
+                splittingScript.SplitAsteroid();
+            }
             Destroy(gameObject);
         }
 
