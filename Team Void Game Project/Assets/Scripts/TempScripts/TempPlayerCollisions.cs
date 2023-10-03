@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class TempPlayerCollisions : MonoBehaviour
 {
     public float playerSpeed = 10f;
     // Start is called before the first frame update
@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Astroid")
         {
             Destroy(gameObject);
-        }
-        
+        } 
     }
 }

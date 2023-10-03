@@ -27,8 +27,16 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Asteroid")
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
         // Destroy the bullet as soon as it collides with anything
         Destroy(gameObject);
     }
-
+    */
 }

@@ -126,7 +126,7 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Bullet bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0, 0.6243f, 0), transform.rotation);
         bullet.Shoot(transform.up);
     }
 
@@ -138,6 +138,15 @@ public class Player : MonoBehaviour
     private void TurnOnCollisions()
     {
         gameObject.layer = LayerMask.NameToLayer("Player");
+    }
+
+    //Collision with Asteroids
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Asteroid")
+        {
+            Destroy(gameObject);
+        }
     }
 
     /*private void OnCollisionEnter2D(Collision2D collision)
