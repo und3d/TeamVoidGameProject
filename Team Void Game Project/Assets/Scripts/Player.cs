@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid")
         {
-           // Destroy(gameObject); DEBUG FOR TESTING AND I KEEP DYING LOL
+           Destroy(gameObject);
         }
     }
 
