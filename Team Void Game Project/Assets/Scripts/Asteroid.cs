@@ -9,22 +9,43 @@ public class Asteroid : MonoBehaviour
     private float[] asteroidSizes = { 0.75f, 1.15f, 1.4f };
     public int[] asteroidSpeeds = { 5, 3, 1 };
 
-    private void Start()
+    // function to set asteroid properties based on its type.
+    public void SetAsteroidProperties(int newType)
     {
-        //Asteroid Type
-        type = Random.Range(0, 3);
+        // set the asteroid's type (0 = small, 1 = medium, 2 = large)
+        type = newType;
+
+        // Determine the asteroid's size/speed based on type
         size = asteroidSizes[type];
         speed = asteroidSpeeds[type];
 
+        // set the asteroid's scale in the scene based on its size
+        transform.localScale = Vector3.one * size;
+    }
+
+    private void Start()
+    {
+        // Randomly determine the asteroid's type upon creation (either 0, 1, or 2)
+        type = Random.Range(0, 3);
+
+        // set the asteroid's size/speed based on the randomly determined type
+        size = asteroidSizes[type];
+        speed = asteroidSpeeds[type];
+
+
         Rigidbody2D _rigidbody = GetComponent<Rigidbody2D>();
 
+        // randomly rotate the asteroid for varied appearance
         transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)));
+
+        // adjust the asteroid's scale in the scene based on its size
         transform.localScale = Vector3.one * size;
 
+        // set the asteroid's movement velocity in the direction it's facing
         _rigidbody.velocity = transform.up * speed;
     }
 
-    //Collision between Asteroid and Bullet
+    // Collision between Asteroid and Bullet
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
