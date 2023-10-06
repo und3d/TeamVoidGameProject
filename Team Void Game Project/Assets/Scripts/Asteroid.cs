@@ -20,22 +20,16 @@ public class Asteroid : MonoBehaviour
 
     private void Start()
     {
-        /*
-        transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)));
-        transform.localScale = Vector3.one * size;
 
-        _rigidbody.velocity = transform.up * speed;
-        */
     }
-
+    //Variables set in the spawner script
     public void SetVariables(Vector2 direction, int speed, float size, int type)
     {
-        //_rigidbody.mass = size * type * 5;
 
-        _rigidbody.AddForce(direction * speed);
-        transform.localScale = Vector3.one * size;
+        _rigidbody.AddForce(direction * speed);         //Sets the speed of the asteroid
+        transform.localScale = Vector3.one * size;      //Sets the size of the asteroid based on it's type (determined in spawner script)
 
-        Destroy(this.gameObject, this.maxLifeTime);
+        Destroy(this.gameObject, this.maxLifeTime);     //Destroys asteroid after specified amount of time
     }
 
     //Collision between Asteroid and Bullet
