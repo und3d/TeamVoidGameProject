@@ -2,26 +2,40 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    public int type;
     public float size;
     public float speed;
 
-    private float[] asteroidSizes = { 0.75f, 1.15f, 1.4f };
-    private int[] asteroidSpeeds = { 5, 3, 1 };
+    public float[] asteroidSizes = { 0.6f, 1f, 1.4f };
+    public int[] asteroidSpeeds = { 10, 7, 4 };
+    public float maxLifeTime = 30.0f;
+
+    private Rigidbody2D _rigidbody;
+    private SpriteRenderer _spriteRenderer;
+
+    private void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
-        //Asteroid Type
-        type = Random.Range(0, 3);
-        size = asteroidSizes[type];
-        speed = asteroidSpeeds[type];
-
-        Rigidbody2D _rigidbody = GetComponent<Rigidbody2D>();
-
+        /*
         transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)));
         transform.localScale = Vector3.one * size;
 
         _rigidbody.velocity = transform.up * speed;
+        */
+    }
+
+    public void SetVariables(Vector2 direction, int speed, float size, int type)
+    {
+        //_rigidbody.mass = size * type * 5;
+
+        _rigidbody.AddForce(direction * speed);
+        transform.localScale = Vector3.one * size;
+
+        Destroy(this.gameObject, this.maxLifeTime);
     }
 
     //Collision between Asteroid and Bullet
