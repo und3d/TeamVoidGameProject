@@ -5,6 +5,8 @@ public class Asteroid : MonoBehaviour
     public int type;
     public float size;
     public float speed;
+    public int score = 0;
+    
 
     private float[] asteroidSizes = { 0.75f, 1.15f, 1.4f };
     private int[] asteroidSpeeds = { 5, 3, 1 };
@@ -30,12 +32,19 @@ public class Asteroid : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             Destroy(gameObject);
+
+            GamesManager gamesManager = FindObjectOfType<GamesManager>();
+            if (gamesManager != null)
+            {
+                gamesManager.AddPoints(100);
+            }
         }
 
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }
+        
     }
 
 
