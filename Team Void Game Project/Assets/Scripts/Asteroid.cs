@@ -33,10 +33,10 @@ public class Asteroid : MonoBehaviour
         {
             Destroy(gameObject);
 
-            GamesManager gamesManager = FindObjectOfType<GamesManager>();
-            if (gamesManager != null)
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            if (scoreManager != null)
             {
-                gamesManager.AddPoints(100);
+                scoreManager.AddPoints(100);
             }
         }
 

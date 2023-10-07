@@ -4,13 +4,13 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public Text scoreText;//Score Text
-    private int playerScore = 0;// player score
+    public int playerScore = 0;// player score
 
-    //private void Start()
-    //{
-        //UpdateScoreText(); //updating Score Text
+    private void Start()
+    {
+        UpdateScoreText(); //updating Score Text
     
-    //}
+    }
     public void AddPoints(int points)
     {
         //This getts the player score and adds points
