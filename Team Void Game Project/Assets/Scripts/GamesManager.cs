@@ -25,7 +25,6 @@ public class GamesManager : MonoBehaviour
         {
             //updates the text displays the player score (not working only on console)
             scoreText.text = $"Score: {playerScore}";
-            scoreText.text = $"Score: {playerScore}";
             Debug.Log($"Update score text to Score: {playerScore}");
         }
     }
