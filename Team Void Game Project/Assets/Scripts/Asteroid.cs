@@ -5,6 +5,8 @@ public class Asteroid : MonoBehaviour
     public int type;
     public float size;
     public float speed;
+    public int score = 0;
+    
 
     private bool isInitialized = false;
 
@@ -58,11 +60,18 @@ public class Asteroid : MonoBehaviour
                 splittingScript.SplitAsteroid();
             }
             Destroy(gameObject);
+
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            if (scoreManager != null)
+            {
+                scoreManager.AddPoints(100);
+            }
         }
 
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }
+        
     }
 }
