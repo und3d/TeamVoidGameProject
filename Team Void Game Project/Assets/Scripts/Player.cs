@@ -63,7 +63,6 @@ public class Player : MonoBehaviour
             Shoot();
         }
 
-
         // Handle touch input for turning
         foreach (Touch touch in Input.touches)
         {
@@ -145,7 +144,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid")
         {
-            Destroy(gameObject);
+           Destroy(gameObject);
         }
     }
 
