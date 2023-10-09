@@ -68,7 +68,6 @@ public class Player : MonoBehaviour
             Shoot();
         }
 
-
         // Handle touch input for turning
         foreach (Touch touch in Input.touches)
         {
