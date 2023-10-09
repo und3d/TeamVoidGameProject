@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+
+    private LivesManager livesManager;
+
     public new Rigidbody2D rigidbody { get; private set; }
     public Bullet bulletPrefab;
 
@@ -28,12 +31,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-       /* GameObject[] boundaries = GameObject.FindGameObjectsWithTag("x");
+        /* GameObject[] boundaries = GameObject.FindGameObjectsWithTag("x");
 
-        // Disable all boundaries if screen wrapping is enabled
-        for (int i = 0; i < boundaries.Length; i++) {
-            boundaries[i].SetActive(!screenWrapping);
-        }*/
+         // Disable all boundaries if screen wrapping is enabled
+         for (int i = 0; i < boundaries.Length; i++) {
+             boundaries[i].SetActive(!screenWrapping);
+         }*/
+
+        livesManager = FindObjectOfType<LivesManager>();
 
         // Convert screen space bounds to world space bounds
         screenBounds = new Bounds();
