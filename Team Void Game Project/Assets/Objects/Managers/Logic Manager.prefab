@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec8fe937754c9f44a9f876aa9d562ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScore: 0
   playerLives: 3
   scoreText: {fileID: 3995874458121581947, guid: 70119d9ea1acb564f84d32e19fd6581b, type: 3}
   livesText: {fileID: 8184927413198190832, guid: 4d74868ceba63754aa39bab27447ba5a, type: 3}

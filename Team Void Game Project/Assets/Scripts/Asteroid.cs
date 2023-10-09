@@ -70,13 +70,15 @@ public class Asteroid : MonoBehaviour
             {
                 splittingScript.SplitAsteroid();
             }
-            Destroy(gameObject);
 
             ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
             if (scoreManager != null)
             {
+                Debug.Log($"Add Points");
                 scoreManager.AddPoints(100);
             }
+
+            Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Player")
