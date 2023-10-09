@@ -2,54 +2,65 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    public int type;
     public float size;
     public float speed;
     public int score = 0;
+    public int type;
     
-
     private bool isInitialized = false;
+    public Vector2 astDirection;
 
-    private float[] asteroidSizes = { 0.75f, 1.15f, 1.4f };
-    public int[] asteroidSpeeds = { 5, 3, 1 };
+    public float[] asteroidSizes = { 0.6f, 1f, 1.4f };
+    public int[] asteroidSpeeds = { 10, 7, 4 };
+    public float maxLifeTime = 30.0f;
+
+    private Rigidbody2D _rigidbody;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
-        // If the asteroid is not already initialized, randomize its type.
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+
+/*        // If the asteroid is not already initialized, randomize its type.
         if (!isInitialized)
         {
             InitializeAsteroid(Random.Range(0, 3));
-        }
+        } */
     }
 
     private void Start()
     {
-        Rigidbody2D _rigidbody = GetComponent<Rigidbody2D>();
-
-        // randomly rotate the asteroid for varied appearance
-        transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)));
-
-        // adjust the asteroid's scale in the scene based on its size
-        transform.localScale = Vector3.one * size;
-
-        // set the asteroid's movement velocity in the direction it's facing
-        _rigidbody.velocity = transform.up * speed;
+        
     }
 
     public void SetAsteroidProperties(int newType)
     {
-        InitializeAsteroid(newType);
+        SetVariables(this.astDirection, asteroidSpeeds[newType], asteroidSizes[newType], newType);
     }
 
-    // helper function to set the initial properties of the asteroid based on its type
+    //Variables set in the spawner script
+    public void SetVariables(Vector2 direction, int speed, float size, int setType)
+    {
+        this.astDirection = direction;
+        _rigidbody.AddForce(direction * speed);         //Sets the speed of the asteroid
+        transform.localScale = Vector3.one * size;      //Sets the size of the asteroid based on it's type (determined in spawner script)
+        isInitialized = true;
+        type = setType;
+
+        Destroy(this.gameObject, this.maxLifeTime);     //Destroys asteroid after specified amount of time
+    }
+
+/*    // helper function to set the initial properties of the asteroid based on its type
     private void InitializeAsteroid(int newType)
     {
         type = newType;
         size = asteroidSizes[type];
         speed = asteroidSpeeds[type];
         isInitialized = true;
-    }
+    } */
 
+    //Collision between Asteroid and Bullet
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")

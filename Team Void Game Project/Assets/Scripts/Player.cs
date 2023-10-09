@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             if (livesManager != null)
             {
                 livesManager.LoseLife();

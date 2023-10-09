@@ -57,8 +57,9 @@ public class TempAsteroidSplitting : MonoBehaviour
         // randomly rotate the new asteroid (fun variation lol)
         newAsteroid.transform.Rotate(new Vector3(0, 0, Random.Range(0f, 360f)));
 
-        // set the velocity of the new asteroid so it moves in the direction it's facing
+        /*// set the velocity of the new asteroid so it moves in the direction it's facing
         Rigidbody2D _rigidbody = newAsteroid.GetComponent<Rigidbody2D>();
         _rigidbody.velocity = newAsteroid.transform.up * asteroidScript.speed;
+        */
     }
 }
