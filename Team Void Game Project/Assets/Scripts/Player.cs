@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
              boundaries[i].SetActive(!screenWrapping);
          }*/
 
-
         livesManager = FindObjectOfType<LivesManager>();
 
         // Convert screen space bounds to world space bounds
