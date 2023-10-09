@@ -37,9 +37,10 @@ public class Player : MonoBehaviour
          for (int i = 0; i < boundaries.Length; i++) {
              boundaries[i].SetActive(!screenWrapping);
          }*/
-        {
-            livesManager = FindObjectOfType<LivesManager>();
-        }
+
+
+        livesManager = FindObjectOfType<LivesManager>();
+
         // Convert screen space bounds to world space bounds
         screenBounds = new Bounds();
         screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(Vector3.zero));
