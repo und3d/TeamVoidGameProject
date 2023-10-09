@@ -144,7 +144,6 @@ public class Player : MonoBehaviour
     {
         gameObject.layer = LayerMask.NameToLayer("Player");
     }
-
   
     //Collision with Asteroids
     private void OnCollisionEnter2D(Collision2D collision)
