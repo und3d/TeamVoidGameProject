@@ -154,7 +154,6 @@ public class Player : MonoBehaviour
             {
                 livesManager.LoseLife();
             }
-           
         }
     }
 
