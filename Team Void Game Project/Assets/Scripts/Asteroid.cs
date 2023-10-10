@@ -6,7 +6,7 @@ public class Asteroid : MonoBehaviour
     public float speed;
     public int score = 0;
     public int type;
-    
+
     private bool isInitialized = false;
     public Vector2 astDirection;
 
@@ -71,13 +71,7 @@ public class Asteroid : MonoBehaviour
                 splittingScript.SplitAsteroid();
             }
 
-            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
-            if (scoreManager != null)
-            {
-                Debug.Log($"Add Points");
-                scoreManager.AddPoints(100);
-            }
-
+            FindObjectOfType<ScoreManager>().AddPoints(100);
             Destroy(gameObject);
         }
 

@@ -6,7 +6,7 @@ public class LivesManager : MonoBehaviour
     public Text livesText; // Reference to the UI Text component for displaying lives
     public int startingLives = 3; // Adjust the starting lives as needed
 
-    private int playerLives;
+    public int playerLives;
 
     private void Start()
     {
@@ -29,9 +29,6 @@ public class LivesManager : MonoBehaviour
 
     private void UpdateLivesText()
     {
-        if (livesText != null)
-        {
-            livesText.text = $"Lives: {playerLives}";
-        }
+        livesText.text = $"Lives: {playerLives}";
     }
 }

@@ -176,6 +176,8 @@ MonoBehaviour:
   speed: 0
   score: 0
   type: 0
+  scoreManager: {fileID: 100721599435252190, guid: 70119d9ea1acb564f84d32e19fd6581b, type: 3}
+  astDirection: {x: 0, y: 0}
   asteroidSizes:
   - 0.6
   - 1

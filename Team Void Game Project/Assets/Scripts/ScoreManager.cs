@@ -20,13 +20,9 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScoreText()
     {
-        
-        if (scoreText != null)
-        {
-            //updates the text displays the player score (not working only on console)
-            scoreText.text = $"Score: {playerScore}";
-            Debug.Log($"Update score text to Score: {playerScore}");
-        }
+        //updates the text displays the player score (not working only on console)
+        scoreText.text = $"Score: {playerScore}";
+        Debug.Log($"Update score text to Score: {playerScore}");
     }
 }
 

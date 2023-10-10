@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    private LivesManager livesManager;
+    public GameManager gameManager;
 
     public new Rigidbody2D rigidbody { get; private set; }
     public Bullet bulletPrefab;
@@ -37,8 +37,6 @@ public class Player : MonoBehaviour
          for (int i = 0; i < boundaries.Length; i++) {
              boundaries[i].SetActive(!screenWrapping);
          }*/
-
-        livesManager = FindObjectOfType<LivesManager>();
 
         // Convert screen space bounds to world space bounds
         screenBounds = new Bounds();
@@ -134,12 +132,12 @@ public class Player : MonoBehaviour
         bullet.Shoot(transform.up);
     }
 
-    private void TurnOffCollisions()
+    public void TurnOffCollisions()
     {
         gameObject.layer = LayerMask.NameToLayer("Ignore Collisions");
     }
 
-    private void TurnOnCollisions()
+    public void TurnOnCollisions()
     {
         gameObject.layer = LayerMask.NameToLayer("Player");
     }
@@ -149,11 +147,11 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid")
         {
-            //Destroy(gameObject);
-            if (livesManager != null)
-            {
-                livesManager.LoseLife();
-            }
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = 0.0f;
+            this.gameObject.SetActive(false);
+
+            gameManager.PlayerDied();
         }
     }
 
