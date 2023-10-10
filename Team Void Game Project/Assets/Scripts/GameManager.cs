@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void TurnOnCollisions()
+    {
+        player.gameObject.layer = LayerMask.NameToLayer("Player");
+    }
+
     private void Respawn()
     {
         Debug.Log("Respawn");
@@ -29,7 +34,7 @@ public class GameManager : MonoBehaviour
         this.player.gameObject.SetActive(true);
 
         player.TurnOffCollisions();
-        Invoke(nameof(player.TurnOnCollisions), player.respawnInvulnerability);
+        Invoke(nameof(TurnOnCollisions), player.respawnInvulnerability);
     }
 
     private void GameOver()
