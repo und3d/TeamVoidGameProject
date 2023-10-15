@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
 
     public float thrustSpeed = 1f;
     public bool thrusting { get; private set; }
+    public bool canShoot = true;
+
+    public float shootDelay = 0.5f;
 
     public float turnDirection { get; private set; } = 0f;
     public float rotationSpeed = 0.1f;
@@ -85,7 +88,10 @@ public class Player : MonoBehaviour
                 }
                 else if (touch.phase == TouchPhase.Ended)
                 {
-                    Shoot(); // Shoot when touch ends in the right half of the screen
+                    if (canShoot)
+                    {
+                        Shoot(); // Shoot when touch ends in the right half of the screen
+                    }
                 }
             }
         }
@@ -128,8 +134,15 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
+        canShoot = false;
+        Invoke(nameof(CanShoot), shootDelay);
         Bullet bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0, 0.6243f, 0), transform.rotation);
         bullet.Shoot(transform.up);
+    }
+
+    private void CanShoot()
+    {
+        canShoot = true;
     }
 
     public void TurnOffCollisions()

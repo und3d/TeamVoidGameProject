@@ -949,9 +949,17 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5742383754132846426, guid: ecd5d15bf496f424bad8554261ec2a7b, type: 3}
+      propertyPath: shootDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5742383754132846426, guid: ecd5d15bf496f424bad8554261ec2a7b, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1710739752}
+    - target: {fileID: 5742383754132846426, guid: ecd5d15bf496f424bad8554261ec2a7b, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5721666692528392139, guid: 94db1e7828de72848be18d58d0e21496, type: 3}
     - target: {fileID: 6015416844083577501, guid: ecd5d15bf496f424bad8554261ec2a7b, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
