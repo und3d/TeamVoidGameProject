@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
 
     public float thrustSpeed = 1f;
     public bool thrusting { get; private set; }
+    public bool canShoot = true;
+
+    public float shootDelay = 0.5f;
 
     public float turnDirection { get; private set; } = 0f;
     public float rotationSpeed = 0.1f;
@@ -44,7 +47,7 @@ public class Player : MonoBehaviour
         screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f)));
     }
 
- private void Update()
+    private void Update()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
@@ -60,7 +63,7 @@ public class Player : MonoBehaviour
         float rotation = -moveHorizontal * rotationSpeed * Time.deltaTime;
         rigidbody.rotation += rotation;
 
-         // Shoot when the screen is touched
+        // Shoot when the screen is touched
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
@@ -85,7 +88,10 @@ public class Player : MonoBehaviour
                 }
                 else if (touch.phase == TouchPhase.Ended)
                 {
-                    Shoot(); // Shoot when touch ends in the right half of the screen
+                    if (canShoot)
+                    {
+                        Shoot(); // Shoot when touch ends in the right half of the screen
+                    }
                 }
             }
         }
@@ -112,24 +118,35 @@ public class Player : MonoBehaviour
     private void ScreenWrap()
     {
         // Move to the opposite side of the screen if the player exceeds the bounds
-        if (rigidbody.position.x > screenBounds.max.x + 0.5f) {
+        if (rigidbody.position.x > screenBounds.max.x + 0.5f)
+        {
             rigidbody.position = new Vector2(screenBounds.min.x - 0.5f, rigidbody.position.y);
         }
-        else if (rigidbody.position.x < screenBounds.min.x - 0.5f) {
+        else if (rigidbody.position.x < screenBounds.min.x - 0.5f)
+        {
             rigidbody.position = new Vector2(screenBounds.max.x + 0.5f, rigidbody.position.y);
         }
-        else if (rigidbody.position.y > screenBounds.max.y + 0.5f) {
+        else if (rigidbody.position.y > screenBounds.max.y + 0.5f)
+        {
             rigidbody.position = new Vector2(rigidbody.position.x, screenBounds.min.y - 0.5f);
         }
-        else if (rigidbody.position.y < screenBounds.min.y - 0.5f) {
+        else if (rigidbody.position.y < screenBounds.min.y - 0.5f)
+        {
             rigidbody.position = new Vector2(rigidbody.position.x, screenBounds.max.y + 0.5f);
         }
     }
 
     private void Shoot()
     {
+        canShoot = false;
+        Invoke(nameof(CanShoot), shootDelay);
         Bullet bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0, 0.6243f, 0), transform.rotation);
         bullet.Shoot(transform.up);
+    }
+
+    private void CanShoot()
+    {
+        canShoot = true;
     }
 
     public void TurnOffCollisions()
@@ -137,8 +154,8 @@ public class Player : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Ignore Collisions");
     }
 
-    
-  
+
+
     //Collision with Asteroids
     private void OnCollisionEnter2D(Collision2D collision)
     {
