@@ -16,7 +16,10 @@ public class Player : MonoBehaviour
     public bool thrusting { get; private set; }
     public bool canShoot = true;
 
-    public float shootDelay = 0.5f;
+    public float shootDelay = 0.5f; // inital shoot delay
+
+    public float minShootDelay = 0.1f;  //minimum allowed shoot delay
+
 
     public float turnDirection { get; private set; } = 0f;
     public float rotationSpeed = 0.1f;
@@ -67,6 +70,12 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
+        }
+
+        //Button for reducing delay of shootdelay
+        if (Input.GetButtonDown("ReduceDelayButton"))
+        {
+            DecreaseShootDelay();
         }
 
         // Handle touch input for turning
@@ -147,6 +156,13 @@ public class Player : MonoBehaviour
     private void CanShoot()
     {
         canShoot = true;
+    }
+
+
+    public void DecreaseShootDelay()
+    {
+        // Decrease the shoot delay but make sure it doesn't go below the minimum
+        shootDelay = Mathf.Max(shootDelay - 0.1f, minShootDelay);
     }
 
     public void TurnOffCollisions()
