@@ -74,10 +74,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2130394973
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7926371efa380c44b985655ec1c722c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19d752359270cec44989694500789f39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -151,7 +151,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
+    oldSize: {x: 0.48, y: 0.48}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -176,7 +176,6 @@ MonoBehaviour:
   speed: 0
   score: 0
   type: 0
-  scoreManager: {fileID: 100721599435252190, guid: 70119d9ea1acb564f84d32e19fd6581b, type: 3}
   astDirection: {x: 0, y: 0}
   asteroidSizes:
   - 0.6
