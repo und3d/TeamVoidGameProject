@@ -161,27 +161,11 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid")
         {
-<<<<<<< Updated upstream
             rigidbody.velocity = Vector3.zero;
             rigidbody.angularVelocity = 0.0f;
             this.gameObject.SetActive(false);
 
             gameManager.PlayerDied();
-=======
-           //Destroy(gameObject);  //Debug for testing asteroid splits
->>>>>>> Stashed changes
         }
     }
-
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Asteroid"))
-        {
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.angularVelocity = 0f;
-
-            GameManager.Instance.OnPlayerDeath(this);
-        }
-    }*/
-
 }
