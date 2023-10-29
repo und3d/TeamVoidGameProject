@@ -43,12 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: GUI
-    uniqueID: 272750279
+  - name: Background
+    uniqueID: 318625137
     locked: 0
   - name: Game
     uniqueID: 2130394973
     locked: 0
-  - name: Background
-    uniqueID: 318625137
+  - name: GUI
+    uniqueID: 272750279
     locked: 0

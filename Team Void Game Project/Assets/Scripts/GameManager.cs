@@ -4,13 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Player player;
+    public PlayerControls player;
     public LivesManager livesManager;
     public float respawnTime = 3.0f;
 
     public void PlayerDied()
     {
         livesManager.LoseLife();
+        player.canShoot = false;
 
         if (livesManager.playerLives < 0)
         {
@@ -30,8 +31,10 @@ public class GameManager : MonoBehaviour
     private void Respawn()
     {
         Debug.Log("Respawn");
-        this.player.transform.position = Vector3.zero;
-        this.player.gameObject.SetActive(true);
+        player.transform.position = Vector3.zero;
+        player.gameObject.SetActive(true);
+        player.canShoot = true;
+        player.isAlive = true;
 
         player.TurnOffCollisions();
         Invoke(nameof(TurnOnCollisions), player.respawnInvulnerability);
