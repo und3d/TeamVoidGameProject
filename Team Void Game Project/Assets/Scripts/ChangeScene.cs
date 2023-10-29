@@ -8,8 +8,6 @@ public class SceneChanger : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
 
-        // If there is another scene available, load it.
-        // Otherwise, loop back to the first scene (assuming scene 0 is the first scene).
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.LoadScene(nextSceneIndex);
@@ -18,5 +16,10 @@ public class SceneChanger : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+    }
+
+    public void LoadSceneByName(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
