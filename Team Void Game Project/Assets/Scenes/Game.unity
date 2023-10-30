@@ -1970,10 +1970,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6015416844919869221}
+  - component: {fileID: 7445771306197864041}
   - component: {fileID: 738496522073670374}
   - component: {fileID: 7445771306197864040}
   - component: {fileID: 3582574831964543036}
-  - component: {fileID: 7445771306197864041}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player

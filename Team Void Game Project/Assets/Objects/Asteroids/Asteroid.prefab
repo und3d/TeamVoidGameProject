@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2844085380771799050}
+  - component: {fileID: 4742812069715702529}
   - component: {fileID: 3586572997845183665}
   - component: {fileID: 8522495077269332483}
   - component: {fileID: 6571780051194801109}
-  - component: {fileID: 4742812069715702529}
   - component: {fileID: -8740807692858246132}
   m_Layer: 8
   m_Name: Asteroid
@@ -36,6 +36,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4742812069715702529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544330133228643390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f555f964abd55e4db7dc7e8b4983e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0
+  speed: 0
+  score: 0
+  type: 0
+  astDirection: {x: 0, y: 0}
+  asteroidSizes:
+  - 0.6
+  - 1
+  - 1.4
+  asteroidSpeeds: 0a0000000700000004000000
+  maxLifeTime: 30
 --- !u!212 &3586572997845183665
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -151,7 +174,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -160,29 +183,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4742812069715702529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7544330133228643390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f555f964abd55e4db7dc7e8b4983e33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0
-  speed: 0
-  score: 0
-  type: 0
-  astDirection: {x: 0, y: 0}
-  asteroidSizes:
-  - 0.6
-  - 1
-  - 1.4
-  asteroidSpeeds: 0a0000000700000004000000
-  maxLifeTime: 30
 --- !u!114 &-8740807692858246132
 MonoBehaviour:
   m_ObjectHideFlags: 0

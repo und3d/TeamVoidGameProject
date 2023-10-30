@@ -22,11 +22,11 @@ public class Asteroid : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
 
-/*        // If the asteroid is not already initialized, randomize its type.
-        if (!isInitialized)
-        {
-            InitializeAsteroid(Random.Range(0, 3));
-        } */
+        /*        // If the asteroid is not already initialized, randomize its type.
+                if (!isInitialized)
+                {
+                    InitializeAsteroid(Random.Range(0, 3));
+                } */
     }
 
     private void Start()
@@ -70,7 +70,7 @@ public class Asteroid : MonoBehaviour
             {
                 splittingScript.SplitAsteroid();
             }
-
+            HighScoreManager.Instance.AsteroidExplosion();
             FindObjectOfType<ScoreManager>().AddPoints(100);
             Destroy(gameObject);
         }

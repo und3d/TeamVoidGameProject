@@ -8,7 +8,9 @@ public class PlayerControls : MonoBehaviour
     public FixedJoystick Joystick;
     public Bullet bulletPrefab;
     public GameManager gameManager;
+    AudioSource audioSource;
     Rigidbody2D rb;
+    
     Vector2 move;
     public float moveSpeed;
     public bool canShoot = true;
@@ -21,6 +23,7 @@ public class PlayerControls : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -61,6 +64,7 @@ public class PlayerControls : MonoBehaviour
         canShoot = false;
         if (isAlive)
         {
+            HighScoreManager.Instance.ShootSFX();
             Invoke(nameof(CanShoot), shootDelay);
             Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
             bullet.Shoot(transform.up);
@@ -80,6 +84,8 @@ public class PlayerControls : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Ignore Collisions");
     }
 
+    
+
     //Collision with Asteroids
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -91,6 +97,7 @@ public class PlayerControls : MonoBehaviour
             this.gameObject.SetActive(false);
 
             gameManager.PlayerDied();
+            HighScoreManager.Instance.PlayerDeath();
         }
     }
 }
