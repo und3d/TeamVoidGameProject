@@ -15,6 +15,7 @@ public class ScoreManager : MonoBehaviour
     {
         //This getts the player score and adds points
         playerScore += points;
+        HighScoreManager.Instance.Highscore = playerScore;
         UpdateScoreText();
     }
 

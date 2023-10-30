@@ -1,11 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public PlayerControls player;
     public LivesManager livesManager;
+    public Text GameOverText;
+    public GameObject gameOverGroup;
+    public GameObject GUI_Group;
     public float respawnTime = 3.0f;
 
     public void PlayerDied()
@@ -42,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        // TODO
+        GUI_Group.gameObject.SetActive(false);
+        gameOverGroup.gameObject.SetActive(true);
+        GameOverText.text = $" GAME OVER \n\n TOTAL SCORE \n\n {HighScoreManager.Instance.Highscore} ";
     }
 }
