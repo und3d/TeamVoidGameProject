@@ -1714,6 +1714,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1710739753}
   - component: {fileID: 1710739752}
+  - component: {fileID: 1710739754}
+  - component: {fileID: 1710739755}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1754,6 +1756,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1710739754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710739751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf9edc8a61fdf84e8fc4ff130cb4399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreManager: {fileID: 100721599880252221}
+--- !u!114 &1710739755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710739751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722b31ff9ab71a446a13682638784c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2036334130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,6 +2001,7 @@ GameObject:
   - component: {fileID: 738496522073670374}
   - component: {fileID: 7445771306197864040}
   - component: {fileID: 7445771306197864042}
+  - component: {fileID: 7445771306197864043}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -2259,6 +2287,20 @@ PolygonCollider2D:
       - {x: 0.26788396, y: 0.3704102}
       - {x: 0.23884328, y: 0.3246399}
   m_UseDelaunayMesh: 0
+--- !u!114 &7445771306197864043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560240737036775929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6846b251435be54e8c8685d7b3cd6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 500
+  maxLifetime: 2
 --- !u!224 &7511414537856392970
 RectTransform:
   m_ObjectHideFlags: 0
