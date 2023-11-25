@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
@@ -16,6 +17,9 @@ public class Asteroid : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _spriteRenderer;
+
+    //added piercingbullet list
+    private List<PiercingBullet> collidedBullets = new List<PiercingBullet>();
 
     private void Awake()
     {
@@ -50,21 +54,42 @@ public class Asteroid : MonoBehaviour
 
         Destroy(this.gameObject, this.maxLifeTime);     //Destroys asteroid after specified amount of time
     }
+    //also added for piercing bullet
 
-/*    // helper function to set the initial properties of the asteroid based on its type
-    private void InitializeAsteroid(int newType)
+    public List<Asteroid> GetFragments()
     {
-        type = newType;
-        size = asteroidSizes[type];
-        speed = asteroidSpeeds[type];
-        isInitialized = true;
-    } */
+        return new List<Asteroid>(); 
+    }
 
-    //Collision between Asteroid and Bullet
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void HandleBulletCollision(PiercingBullet bullet)
+    {
+        Destroy(gameObject); // Destroying the asteroid for demonstration
+    }
+
+
+        /*    // helper function to set the initial properties of the asteroid based on its type
+            private void InitializeAsteroid(int newType)
+            {
+                type = newType;
+                size = asteroidSizes[type];
+                speed = asteroidSpeeds[type];
+                isInitialized = true;
+            } */
+
+        //Collision between Asteroid and Bullet
+        private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
         {
+            //added for bulletpiercing
+            PiercingBullet piercingBullet = collision.gameObject.GetComponent<PiercingBullet>();
+
+            if(piercingBullet != null && !HasCollided(piercingBullet))
+            {
+                HandleBulletCollision(piercingBullet);
+            }
+
             TempAsteroidSplitting splittingScript = GetComponent<TempAsteroidSplitting>();
             if (splittingScript != null)
             {
@@ -80,5 +105,12 @@ public class Asteroid : MonoBehaviour
             Destroy(gameObject);
         }
         
+    }
+
+    
+
+    private bool HasCollided(PiercingBullet bullet)
+    {
+        return collidedBullets.Contains(bullet);
     }
 }
