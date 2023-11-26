@@ -62,14 +62,18 @@ public class PlayerControls : MonoBehaviour
     public void Shoot()
     {
         canShoot = false;
-        if (isAlive)
+        if (isAlive && bulletPrefab != null)
         {
-            HighScoreManager.Instance.ShootSFX();
+            HighScoreManager.Instance?.ShootSFX();
             Invoke(nameof(CanShoot), shootDelay);
             Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            bullet.Shoot(transform.up);
+            if (bullet != null)
+            {
+                bullet.Shoot(transform.up);
+            }
         }
     }
+
 
     private void CanShoot()
     {
@@ -97,7 +101,7 @@ public class PlayerControls : MonoBehaviour
             this.gameObject.SetActive(false);
 
             gameManager.PlayerDied();
-            HighScoreManager.Instance.PlayerDeath();
+            HighScoreManager.Instance?.PlayerDeath();
         }
     }
 }

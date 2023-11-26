@@ -17,12 +17,11 @@ public class Bullet : MonoBehaviour
 
     public void Shoot(Vector2 direction)
     {
-        // The bullet only needs a force to be added once since they have no
-        // drag to make them stop moving
-        rigidbody.AddForce(direction * speed);
-
-        // Destroy the bullet after it reaches it max lifetime
-        Destroy(gameObject, maxLifetime);
+        if (rigidbody != null)
+        {
+            rigidbody.AddForce(direction * speed);
+            Destroy(gameObject, maxLifetime);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

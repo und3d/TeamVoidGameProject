@@ -11,14 +11,28 @@ public class GetHighScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score = HighScoreManager.Instance.Highscore;
-        UpdateScoreText();
+        if (HighScoreManager.Instance != null)
+        {
+            score = HighScoreManager.Instance.Highscore;
+            UpdateScoreText();
+        }
+        else
+        {
+            Debug.LogError("HighScoreManager is not initialized!");
+        }
     }
 
     private void UpdateScoreText()
     {
         //updates the text displays the player score
-        scoreText.text = $"Score: {score}";
-        Debug.Log($"Update score text to Score: {score}");
+        if (scoreText != null)
+        {
+            scoreText.text = $"Score: {score}";
+            Debug.Log($"Update score text to Score: {score}");
+        }
+        else
+        {
+            Debug.LogError("scoreText is not assigned!");
+        }
     }
 }

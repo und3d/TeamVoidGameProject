@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 333386787}
   m_Layer: 0
   m_Name: AsteroidSpawner
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1535,6 +1535,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096019675}
   m_CullTransparentMesh: 1
+--- !u!1 &1149904894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1149904896}
+  - component: {fileID: 1149904895}
+  m_Layer: 0
+  m_Name: TempPowerupManager
+  m_TagString: PowerUp
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1149904895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149904894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee356ccbbb594545b04308892de31f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objects:
+  - {fileID: 2812182313716121824, guid: 882b0af1844d68740a4c021eb139a9e9, type: 3}
+  - {fileID: 3896566365370228028, guid: c545bf55c2520a843b920653f6f4536d, type: 3}
+  - {fileID: 5286221539910395380, guid: 2b6f9dae7b465904d9e0c217fbb753ff, type: 3}
+  - {fileID: 2558820981470139155, guid: 51ced683e5fd4894e96a7dca7a1275a7, type: 3}
+  _camera: {fileID: 519420031}
+  _offsetX: 0
+  _offsetY: 0
+  _spawnDuration: 10
+  _spawnCountPerWave: 15
+  _numberOfWaves: 5
+--- !u!4 &1149904896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149904894}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5975525, y: -1.2577083, z: -0.07179147}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1305569780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,7 +1771,7 @@ GameObject:
   - component: {fileID: 1710739752}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1974,6 +2029,7 @@ GameObject:
   - component: {fileID: 738496522073670374}
   - component: {fileID: 7445771306197864040}
   - component: {fileID: 7445771306197864042}
+  - component: {fileID: 7445771306197864043}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -2143,7 +2199,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &7445771306197864041
 MonoBehaviour:
@@ -2259,6 +2315,41 @@ PolygonCollider2D:
       - {x: 0.26788396, y: 0.3704102}
       - {x: 0.23884328, y: 0.3246399}
   m_UseDelaunayMesh: 0
+--- !u!58 &7445771306197864043
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560240737036775929}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!224 &7511414537856392970
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2326,3 +2417,4 @@ SceneRoots:
   - {fileID: 6015416844919869221}
   - {fileID: 865229215}
   - {fileID: 1305569782}
+  - {fileID: 1149904896}

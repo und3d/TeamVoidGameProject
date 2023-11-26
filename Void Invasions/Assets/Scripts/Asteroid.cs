@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
@@ -29,11 +31,6 @@ public class Asteroid : MonoBehaviour
                 } */
     }
 
-    private void Start()
-    {
-        
-    }
-
     public void SetAsteroidProperties(int newType)
     {
         SetVariables(this.astDirection, asteroidSpeeds[newType], asteroidSizes[newType], newType);
@@ -51,14 +48,14 @@ public class Asteroid : MonoBehaviour
         Destroy(this.gameObject, this.maxLifeTime);     //Destroys asteroid after specified amount of time
     }
 
-/*    // helper function to set the initial properties of the asteroid based on its type
-    private void InitializeAsteroid(int newType)
-    {
-        type = newType;
-        size = asteroidSizes[type];
-        speed = asteroidSpeeds[type];
-        isInitialized = true;
-    } */
+    /*    // helper function to set the initial properties of the asteroid based on its type
+        private void InitializeAsteroid(int newType)
+        {
+            type = newType;
+            size = asteroidSizes[type];
+            speed = asteroidSpeeds[type];
+            isInitialized = true;
+        } */
 
     //Collision between Asteroid and Bullet
     private void OnCollisionEnter2D(Collision2D collision)
@@ -70,8 +67,27 @@ public class Asteroid : MonoBehaviour
             {
                 splittingScript.SplitAsteroid();
             }
-            HighScoreManager.Instance.AsteroidExplosion();
-            FindObjectOfType<ScoreManager>().AddPoints(100);
+
+            HighScoreManager highScoreManager = HighScoreManager.Instance;
+            if (highScoreManager != null)
+            {
+                highScoreManager.AsteroidExplosion();
+            }
+            else
+            {
+                Debug.LogError("HighScoreManager is null!");
+            }
+
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            if (scoreManager != null)
+            {
+                scoreManager.AddPoints(100);
+            }
+            else
+            {
+                Debug.LogError("ScoreManager not found!");
+            }
+
             Destroy(gameObject);
         }
 
@@ -79,6 +95,6 @@ public class Asteroid : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
     }
+
 }
