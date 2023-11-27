@@ -9,12 +9,12 @@ public class ScoreManager : MonoBehaviour
     private void Start()
     {
         UpdateScoreText(); //updating Score Text
-    
+
     }
     public void AddPoints(int points)
     {
         //This getts the player score and adds points
-        playerScore += points;
+        playerScore += points * 2;
         HighScoreManager.Instance.Highscore = playerScore;
         UpdateScoreText();
     }

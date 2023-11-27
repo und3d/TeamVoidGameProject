@@ -2,26 +2,23 @@ using UnityEngine;
 
 public class Nuke : MonoBehaviour
 {
-    private bool nukeActive = false;
+    private bool isNukeActive = false;
+    private float nukeDuration = 20.0f;
     private float nukeStartTime;
 
     void Start()
     {
-        nukeStartTime = -1.0f; // Set the nuke start time to -1 to indicate it's not active initially
+        // Set the nuke start time to the current time to make it active from the start
+        nukeStartTime = Time.time;
     }
 
     void Update()
     {
-        if (Time.time <= nukeStartTime + 20.0f)
-        {
-            nukeActive = true; // Activate the nuke
-        }
-        else
-        {
-            nukeActive = false; // Deactivate the nuke
-        }
+        // Check if the nuke is active based on the duration
+        isNukeActive = Time.time <= nukeStartTime + nukeDuration;
 
-        if (nukeActive)
+        // If the nuke is active, destroy asteroids
+        if (isNukeActive)
         {
             DestroyAsteroids();
         }
@@ -29,15 +26,24 @@ public class Nuke : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "PowerUpNuke")
+        // Check if the collided object is the power-up for the nuke
+        if (other.CompareTag("PowerUpNuke"))
         {
-            nukeStartTime = Time.time; // Activate the nuke when it collides 
-            Destroy(other.gameObject); 
+            // Activate the nuke and set the start time
+            ActivateNuke();
+            Destroy(other.gameObject); // Destroy the power-up
         }
+    }
+
+    void ActivateNuke()
+    {
+        // Set the nuke start time to the current time
+        nukeStartTime = Time.time;
     }
 
     void DestroyAsteroids()
     {
+        // Find all game objects with the "Asteroid" tag and destroy them
         GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
         foreach (GameObject asteroid in asteroids)
         {
@@ -45,4 +51,3 @@ public class Nuke : MonoBehaviour
         }
     }
 }
-
