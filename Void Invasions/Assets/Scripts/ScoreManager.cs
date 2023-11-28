@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class ScoreManager : MonoBehaviour
         //updates the text displays the player score (not working only on console)
         scoreText.text = $"Score: {playerScore}";
         Debug.Log($"Update score text to Score: {playerScore}");
+
+        if (playerScore >= 100 && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Game"))
+        {
+            SceneManager.LoadScene("Asteroid Boss");
+        }
     }
 }
 
