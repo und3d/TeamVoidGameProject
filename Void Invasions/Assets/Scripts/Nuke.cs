@@ -9,19 +9,13 @@ public class Nuke : MonoBehaviour
     void Start()
     {
         // Set the nuke start time to the current time to make it active from the start
-        nukeStartTime = Time.time;
+        Invoke(nameof(ActivateNuke), 15f);
     }
 
     void Update()
     {
         // Check if the nuke is active based on the duration
-        isNukeActive = Time.time <= nukeStartTime + nukeDuration;
-
-        // If the nuke is active, destroy asteroids
-        if (isNukeActive)
-        {
-            DestroyAsteroids();
-        }
+       
     }
 
     void OnTriggerEnter(Collider other)
@@ -38,7 +32,7 @@ public class Nuke : MonoBehaviour
     void ActivateNuke()
     {
         // Set the nuke start time to the current time
-        nukeStartTime = Time.time;
+        DestroyAsteroids();
     }
 
     void DestroyAsteroids()
