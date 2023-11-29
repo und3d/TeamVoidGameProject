@@ -5,30 +5,34 @@ public class ScoreManager : MonoBehaviour
 {
     public Text scoreText;  // Score Text
     public int playerScore = 0;  // Player score
-    public bool doublePoints = true;  // Flag to enable/disable double points
+    public bool doublePoints = false;  // Flag to enable/disable double points
+    public float doublePointsDuration = 10.0f;  // Duration for double points
 
     private void Start()
     {
         UpdateScoreText();  // Updating Score Text
+
+        // activates double points after 15 seconds
+        Invoke("ActivateDoublePoints", 15f);
     }
 
     public void AddPoints(int points)
     {
-        // This gets the player score and adds points
+        // This gets the player score and adds points for the double points
         int pointsToAdd = doublePoints ? points * 2 : points;
         playerScore += pointsToAdd;
         HighScoreManager.Instance.Highscore = playerScore;
         UpdateScoreText();
     }
 
-   
     public void ActivateDoublePoints()
     {
         doublePoints = true;
 
+        //Deactivate double points after the specified duration
+        Invoke("DeactivateDoublePoints", doublePointsDuration);
     }
 
-    
     public void DeactivateDoublePoints()
     {
         doublePoints = false;
@@ -36,7 +40,7 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScoreText()
     {
-        // Updates the text, displaying the player score (not working only on console)
+        // Updates the text displaying the player score
         scoreText.text = $"Score: {playerScore}";
         Debug.Log($"Update score text to Score: {playerScore}");
     }

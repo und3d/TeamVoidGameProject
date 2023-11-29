@@ -6,42 +6,55 @@ public class Nuke : MonoBehaviour
     private float nukeDuration = 20.0f;
     private float nukeStartTime;
 
+    // Reference to the ScoreManager
+    public ScoreManager scoreManager;
+
     void Start()
     {
-        // Set the nuke start time to the current time to make it active from the start
+        // Set the nuke start time
         Invoke(nameof(ActivateNuke), 15f);
     }
 
     void Update()
     {
         // Check if the nuke is active based on the duration
-       
+        if (isNukeActive && Time.time - nukeStartTime > nukeDuration)
+        {
+            isNukeActive = false;
+            DestroyAsteroids();
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
         // Check if the collided object is the power-up for the nuke
-        if (other.CompareTag("PowerUpNuke"))
-        {
-            // Activate the nuke and set the start time
-            ActivateNuke();
-            Destroy(other.gameObject); // Destroy the power-up
-        }
+  
+   
     }
 
     void ActivateNuke()
     {
-        // Set the nuke start time to the current time
+        // Set the nuke start time 
+        nukeStartTime = Time.time;
+        isNukeActive = true;
+
+        // Add points to the player's score when the nuke is activated
+        int pointsToAdd = 1000; // You can change this to any amount you want
+        scoreManager.AddPoints(pointsToAdd);
+
+        // Destroy asteroids 
         DestroyAsteroids();
     }
 
     void DestroyAsteroids()
     {
-        // Find all game objects with the "Asteroid" tag and destroy them
+        // Find all game objects with the Asteroid tag and destroy them
         GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
-        foreach (GameObject asteroid in asteroids)
+
+        
+        for (int i = 0; i < asteroids.Length; i++)
         {
-            Destroy(asteroid);
+            Destroy(asteroids[i]);
         }
     }
 }
