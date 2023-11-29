@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Asteroid
-  - PowerUp
+  - Boss
   layers:
   - Default
   - TransparentFX

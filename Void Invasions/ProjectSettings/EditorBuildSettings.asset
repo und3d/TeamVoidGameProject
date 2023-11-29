@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Asteroid Boss.unity
+    guid: a73c15445e7ceb84599850811e983f95
   m_configObjects: {}
