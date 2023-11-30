@@ -4,31 +4,46 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    public event System.Action OnShieldCollected; // using System added here
+    public SpriteRenderer spriteRenderer;
 
-    public float shieldDuration = 10f;
-    private bool hasShield = false;
+    private bool isShieldActive = false;
 
-    public void ActivateShield()
+    // Define the event
+    public delegate void ShieldCollectedEventHandler();
+    public event ShieldCollectedEventHandler OnShieldCollected;
+
+    void Update()
     {
-        if (!hasShield)
+        // Only update the shield visibility if it is active and the spriteRenderer is not null
+        if (isShieldActive && spriteRenderer != null)
         {
-            StartCoroutine(ShieldCoroutine());
-            OnShieldCollected?.Invoke();
+            spriteRenderer.enabled = !spriteRenderer.enabled;
         }
     }
 
-    private IEnumerator ShieldCoroutine()
+    // Method to activate the shield
+    public void ActivateShield()
     {
-        hasShield = true;
-        yield return new WaitForSeconds(shieldDuration);
-        hasShield = false;
-        Destroy(gameObject);
+        // Code to activate the shield...
+        isShieldActive = true;
+
+        // Trigger the event when the shield is collected
+        if (OnShieldCollected != null)
+        {
+            OnShieldCollected();
+        }
     }
 
-    // This method can be used to check if the shield is currently active
-    public bool HasShield()
+    // Method to deactivate the shield
+    public void DeactivateShield()
     {
-        return hasShield;
+        // Code to deactivate the shield...
+        isShieldActive = false;
+    }
+
+    // Method to check if the shield is active
+    public bool IsShieldActive()
+    {
+        return isShieldActive;
     }
 }

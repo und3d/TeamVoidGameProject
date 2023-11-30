@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4837656401004104993}
   - component: {fileID: 3392693257764163395}
   - component: {fileID: 7269563350954471938}
-  - component: {fileID: -5018951385774825971}
+  - component: {fileID: -5850181297838907712}
   m_Layer: 0
   m_Name: Shield
   m_TagString: PowerUp
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8462d28ead33148b9b9cb67f2d537c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-5018951385774825971
+--- !u!114 &-5850181297838907712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,8 +143,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2558820981470139155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5257d405022fbb145b4098eb62915ad2, type: 3}
+  m_Script: {fileID: 11500000, guid: 078689a03a6876442be4629cf377cce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldDuration: 15
-  shieldPrefab: {fileID: 2558820981470139155}
+  activateShield: 1
+  activateMaxBounces: 0
+  instaKill: 0
+  invincibility: 0
+  powerUpDuration: 10

@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-     private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
@@ -33,9 +33,15 @@ public class EnemyController : MonoBehaviour
     {
         if (other.CompareTag("Shield"))
         {
-            if (shield != null)
+            // Check if the 'Shield' component is attached to the 'other' GameObject
+            Shield otherShield = other.GetComponent<Shield>();
+
+            if (otherShield != null)
             {
-                shield.ActivateShield();
+                // Assuming you have an ActivateShield method in the Shield class
+                otherShield.ActivateShield();
+
+                // Assuming you want to destroy the 'Shield' GameObject, not 'this' GameObject
                 Destroy(other.gameObject);
             }
         }

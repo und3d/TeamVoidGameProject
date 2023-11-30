@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8405407829612963607}
   - component: {fileID: 3423817629187554815}
   - component: {fileID: 3722330086225157924}
-  - component: {fileID: 2253550233774245040}
   - component: {fileID: -1760439027323741966}
+  - component: {fileID: 2443513672035618167}
   m_Layer: 0
   m_Name: BouncyBullets
   m_TagString: PowerUp
@@ -135,21 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8462d28ead33148b9b9cb67f2d537c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2253550233774245040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2812182313716121824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d9d65cd4d225044a95d41a273ede85c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  lifetime: 3
-  maxBounces: 3
 --- !u!50 &-1760439027323741966
 Rigidbody2D:
   serializedVersion: 4
@@ -177,3 +162,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &2443513672035618167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812182313716121824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078689a03a6876442be4629cf377cce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateShield: 0
+  activateMaxBounces: 1
+  instaKill: 0
+  invincibility: 0
+  powerUpDuration: 10

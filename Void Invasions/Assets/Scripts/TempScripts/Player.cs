@@ -27,19 +27,28 @@ public class Player : MonoBehaviour
     public bool screenWrapping = true;
     private Bounds screenBounds;
 
+
+    private bool hasMaxBounces = false; // Boolean to track whether maxBounces power-up is active
+    private bool isInvincible = false; // Invincibility
+    private bool isInstakill = false; //Instantkill
+    public float powerUpDuration = 10f; // Time allowed for upgrade
+
+    //Refrencing the gameobject
+    GameObject shield;
+
+    // Boolean to track whether the shield power-up is active
+    private bool hasShield = false;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    void Start()
     {
-        /* GameObject[] boundaries = GameObject.FindGameObjectsWithTag("x");
-
-         // Disable all boundaries if screen wrapping is enabled
-         for (int i = 0; i < boundaries.Length; i++) {
-             boundaries[i].SetActive(!screenWrapping);
-         }*/
+        //Shield Power up logic
+        shield = transform.Find("Shield").gameObject;
+        DeactivateShield();
 
         // Convert screen space bounds to world space bounds
         screenBounds = new Bounds();
@@ -140,8 +149,19 @@ public class Player : MonoBehaviour
     {
         canShoot = false;
         Invoke(nameof(CanShoot), shootDelay);
-        Bullet bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0, 0.6243f, 0), transform.rotation);
-        bullet.Shoot(transform.up);
+
+        // Define shootDirection here (assuming it's a Vector2 variable)
+        Vector2 shootDirection = transform.up;
+
+        // Define hasBounceUpgrade here (assuming it's a bool variable)
+        bool hasBounceUpgrade = true; // Adjust this value based on your logic
+
+        // Set enableBounce based on whether the instakill power-up is active
+        bool enableBounce = !isInstakill;
+
+        // Instantiate the bullet and shoot
+        Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        bullet.Shoot(shootDirection, enableBounce);
     }
 
     private void CanShoot()
@@ -154,18 +174,153 @@ public class Player : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Ignore Collisions");
     }
 
+    //Invincibility
+    public void ActivateInvincibility()
+    {
+        isInvincible = true;
+        StartCoroutine(DeactivateInvincibilityAfterDuration());
+    }
 
+    public void DeactivateInvincibility()
+    {
+        isInvincible = false;
+    }
+
+    IEnumerator DeactivateInvincibilityAfterDuration()
+    {
+        yield return new WaitForSeconds(powerUpDuration);
+        DeactivateInvincibility();
+    }
+
+    //InstaKill
+    public void ActivateInstakill()
+    {
+        isInstakill = true;
+        StartCoroutine(DeactivateInstakillAfterDuration());
+    }
+
+    public void DeactivateInstakill()
+    {
+        isInstakill = false;
+    }
+
+    IEnumerator DeactivateInstakillAfterDuration()
+    {
+        yield return new WaitForSeconds(powerUpDuration);
+        DeactivateInstakill();
+    }
+
+    ///maxBounces
+    public void ActivateMaxBounces()
+    {
+        // Set the maximum number of bounces as needed
+        Bullet bulletPrefab = GetComponent<Bullet>();
+        if (bulletPrefab != null)
+        {
+            bulletPrefab.maxBounces = 3;
+        }
+
+        // Set the flag to indicate that maxBounces is active
+        hasMaxBounces = true;
+    }
+
+    public void DeactivateMaxBounces()
+    {
+        // Reset maxBounces to its default value
+        Bullet bulletPrefab = GetComponent<Bullet>();
+        if (bulletPrefab != null)
+        {
+            bulletPrefab.maxBounces = 1; // Set to the default value
+        }
+
+        // Set the flag to indicate that maxBounces is not active
+        hasMaxBounces = false;
+    }
+
+    //Activate and deactivate Shield powerup
+    public void ActivateShield()
+    {
+        shield.SetActive(true);
+        hasShield = true;
+    }
+
+    public void DeactivateShield()
+    {
+        shield.SetActive(false);
+        hasShield = false;
+    }
+
+    public bool HasShield()
+    {
+        return hasShield;
+    }
 
     //Collision with Asteroids
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Asteroid")
         {
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.angularVelocity = 0.0f;
-            this.gameObject.SetActive(false);
+            // If the player has a shield, deactivate it and continue playing
+            if (HasShield())
+            {
+                DeactivateShield();
+            }
+            else
+            {
+                // Destroy the player GameObject first
+                Destroy(gameObject);
+                rigidbody.velocity = Vector3.zero;
+                rigidbody.angularVelocity = 0.0f;
 
-            gameManager.PlayerDied();
+                // Then handle player death and respawn
+                gameManager.PlayerDied();
+                StartCoroutine(RespawnAfterDelay());
+            }
+            Destroy(collision.gameObject);
+        }
+
+        PowerUp powerUp = collision.gameObject.GetComponent<PowerUp>();
+        if (powerUp)
+        {
+            if (powerUp.activateShield)
+            {
+                // Activate the shield power-up and destroy it
+                ActivateShield();
+                Destroy(powerUp.gameObject);
+            }
+            else if (powerUp.invincibility)
+            {
+                // Handle invincibility power-up logic
+                ActivateInvincibility();
+                Destroy(powerUp.gameObject);
+            }
+            else if (powerUp.instaKill)
+            {
+                // Handle instakill power-up logic
+                ActivateInstakill();
+                Destroy(powerUp.gameObject);
+            }
+            else if (powerUp.activateMaxBounces)
+            {
+                // Handle maxBounces power-up logic
+                ActivateMaxBounces();
+                StartCoroutine(DeactivateMaxBouncesAfterDuration());
+                Destroy(powerUp.gameObject);
+            }
         }
     }
+
+    IEnumerator RespawnAfterDelay()
+    {
+        yield return new WaitForSeconds(respawnDelay);
+
+        // Respawn logic goes here, either in GameManager or directly in this script
+        gameManager.Respawn(); // Make sure RespawnPlayer is defined in your GameManager
+    }
+    IEnumerator DeactivateMaxBouncesAfterDuration()
+    {
+        yield return new WaitForSeconds(powerUpDuration);
+        DeactivateMaxBounces();
+    }
+
 }

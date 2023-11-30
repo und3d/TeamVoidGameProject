@@ -9,7 +9,7 @@ public class Asteroid : MonoBehaviour
     public int score = 0;
     public int type;
 
-    private bool isInitialized = false;
+    //private bool isInitialized = false;
     public Vector2 astDirection;
 
     public float[] asteroidSizes = { 0.6f, 1f, 1.4f };
@@ -42,7 +42,7 @@ public class Asteroid : MonoBehaviour
         this.astDirection = direction;
         _rigidbody.AddForce(direction * speed);         //Sets the speed of the asteroid
         transform.localScale = Vector3.one * size;      //Sets the size of the asteroid based on it's type (determined in spawner script)
-        isInitialized = true;
+        //isInitialized = true;
         type = setType;
 
         Destroy(this.gameObject, this.maxLifeTime);     //Destroys asteroid after specified amount of time

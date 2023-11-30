@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1260988526277146300}
   - component: {fileID: 8020427067008032732}
   - component: {fileID: 1731486758654268444}
-  - component: {fileID: 8155736783939106997}
+  - component: {fileID: -6264370220349613594}
   m_Layer: 0
   m_Name: Invincibility
   m_TagString: PowerUp
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8462d28ead33148b9b9cb67f2d537c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8155736783939106997
+--- !u!114 &-6264370220349613594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5286221539910395380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd97115e6688fff41ae7e0800c76d98c, type: 3}
+  m_Script: {fileID: 11500000, guid: 078689a03a6876442be4629cf377cce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibilityDuration: 5
+  activateShield: 0
+  bouncyBullets: 0
+  invincibility: 1
+  instaKill: 0
