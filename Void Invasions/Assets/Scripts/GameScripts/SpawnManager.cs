@@ -9,8 +9,8 @@ public class RandomSpawner : MonoBehaviour
     [SerializeField] int _offsetX;
     [SerializeField] int _offsetY;
     [SerializeField] float _spawnDuration = 10f;
-    [SerializeField] int _spawnCountPerWave = 5;
-    [SerializeField] int _numberOfWaves = 3; // Adjust the number of waves as needed
+    [SerializeField] int _spawnCountPerWave = 1;
+    [SerializeField] int _numberOfWaves = 1; // Adjust the number of waves as needed
 
     List<GameObject> _spawnedObjects = new List<GameObject>();
 
@@ -47,9 +47,9 @@ public class RandomSpawner : MonoBehaviour
 
     void Spawn()
     {
-        int randomObjectID = Random.Range(0, _objects.Length);
+        GameObject upgrade = GetRandomUpgrade();      //Random.Range(0, _objects.Length);
         Vector2 position = GetRandomCoordinates();
-        GameObject spawnedObject = Instantiate(_objects[randomObjectID], position, Quaternion.identity);
+        GameObject spawnedObject = Instantiate(upgrade, position, Quaternion.identity);
         _spawnedObjects.Add(spawnedObject);
     }
 
@@ -71,5 +71,42 @@ public class RandomSpawner : MonoBehaviour
             Destroy(spawnedObject);
         }
         _spawnedObjects.Clear();
+    }
+
+    GameObject GetRandomUpgrade()
+    {
+        GameObject upgrade = Instantiate(gameObject);
+
+        int objectNum = Random.Range(1, 81);
+
+        switch(objectNum)
+        {
+            case < 11 and >= 1:
+                upgrade = _objects[0];
+                break;
+            case < 21 and >= 11:
+                upgrade = _objects[1];
+                break;
+            case < 31 and >= 21:
+                upgrade = _objects[2];
+                break;
+            case < 41 and >= 31:
+                upgrade = _objects[3];
+                break;
+            case < 51 and >= 41:
+                upgrade = _objects[4];
+                break;
+            case < 61 and >= 51:
+                upgrade = _objects[5];
+                break;
+            case < 71 and >= 61:
+                upgrade = _objects[6];
+                break;
+            case < 81 and >= 71:
+                upgrade = _objects[7];
+                break;
+        }
+
+        return upgrade;
     }
 }

@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
     public Text scoreText;  // Score Text
     public int playerScore = 0;  // Player score
+    public int bossScore = 1000;
     public bool doublePoints = false;  // Flag to enable/disable double points
     public float doublePointsDuration = 10.0f;  // Duration for double points
 
@@ -43,5 +45,10 @@ public class ScoreManager : MonoBehaviour
         // Updates the text displaying the player score
         scoreText.text = $"Score: {playerScore}";
         Debug.Log($"Update score text to Score: {playerScore}");
+
+        if (playerScore >= bossScore && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Game"))
+        {
+            SceneManager.LoadScene("Asteroid Boss");
+        }
     }
 }

@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 4837656401004104993}
   - component: {fileID: 3392693257764163395}
   - component: {fileID: 7269563350954471938}
-  - component: {fileID: -5018951385774825971}
   m_Layer: 0
-  m_Name: Shield
+  m_Name: Weapon
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.022629954}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.6530619, g: 0.6886792, b: 0.31510323, a: 1}
+  m_Color: {r: 0.23584908, g: 0.094658725, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -134,17 +133,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8462d28ead33148b9b9cb67f2d537c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-5018951385774825971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2558820981470139155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5257d405022fbb145b4098eb62915ad2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shieldDuration: 15
-  shieldPrefab: {fileID: 2558820981470139155}

@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     public float speed = 500f;
     public float maxLifetime = 2f;
 
+    public BouncyBullets bouncyBulletsPrefab;
 
     private void Awake()
     {
@@ -26,16 +27,35 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Asteroid")
+        switch(bouncyBulletsPrefab.bouncyActive)
         {
-            Destroy(gameObject);
+            case false:
+                if (collision.gameObject.tag == "Asteroid")
+                {
+                    Destroy(gameObject);
+                }
+                break;
+            case true:
+                if (collision.gameObject.CompareTag("BounceSurface") && bouncyBulletsPrefab.bounces < bouncyBulletsPrefab.maxBounces)
+                {
+                    // Reflect the bullet's velocity
+                    ReflectBullet(collision.contacts[0].normal);
+
+                    // Increment the bounce counter
+                    bouncyBulletsPrefab.bounces++;
+                }
+                else
+                {
+                    // If the bullet hits something else or reaches max bounces, destroy it
+                    Destroy(gameObject);
+                }
+                break;
+        }
+
+        void ReflectBullet(Vector2 normal)
+        {
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.Reflect(rb.velocity, normal).normalized * speed;
         }
     }
-
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Destroy the bullet as soon as it collides with anything
-        Destroy(gameObject);
-    }
-    */
 }
