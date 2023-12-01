@@ -6,56 +6,62 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public new Rigidbody2D rigidbody { get; private set; }
-    public float speed = 500f;
+    public float speed = 1f;
     public float maxLifetime = 2f;
 
     public BouncyBullets bouncyBulletsPrefab;
 
+    Vector3 lastVelocity;
+    float curVelocity;
+    Vector3 dir;
+    int curBounces;
+    int maxBounces;
+
     private void Awake()
     {
+        curBounces = bouncyBulletsPrefab.bounces;
+        maxBounces = bouncyBulletsPrefab.maxBounces;
         rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void LateUpdate()
+    {
+        lastVelocity = rigidbody.velocity;
     }
 
     public void Shoot(Vector2 direction)
     {
         if (rigidbody != null)
         {
-            rigidbody.AddForce(direction * speed);
-            Destroy(gameObject, maxLifetime);
+            rigidbody.velocity = direction.normalized * speed;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        switch(bouncyBulletsPrefab.bouncyActive)
+        switch (HighScoreManager.Instance.bouncyActive) 
         {
             case false:
-                if (collision.gameObject.tag == "Asteroid")
-                {
+                //if (collision.gameObject.tag == "Asteroid")
+                //{
                     Destroy(gameObject);
-                }
+                //}
                 break;
             case true:
-                if (collision.gameObject.CompareTag("BounceSurface") && bouncyBulletsPrefab.bounces < bouncyBulletsPrefab.maxBounces)
+                if (collision.gameObject.CompareTag("Border") && curBounces < maxBounces)
                 {
-                    // Reflect the bullet's velocity
-                    ReflectBullet(collision.contacts[0].normal);
+                    curVelocity = lastVelocity.magnitude;
+                    dir = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
 
-                    // Increment the bounce counter
-                    bouncyBulletsPrefab.bounces++;
+                    rigidbody.velocity = dir * Mathf.Max(curVelocity, 0);
+                    curBounces++;
                 }
                 else
                 {
-                    // If the bullet hits something else or reaches max bounces, destroy it
                     Destroy(gameObject);
                 }
                 break;
         }
-
-        void ReflectBullet(Vector2 normal)
-        {
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.velocity = Vector2.Reflect(rb.velocity, normal).normalized * speed;
-        }
+        
     }
 }

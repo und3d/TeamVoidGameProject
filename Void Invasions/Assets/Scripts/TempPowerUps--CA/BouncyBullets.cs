@@ -10,13 +10,12 @@ public class BouncyBullets : MonoBehaviour
     public int bounces = 0;
     public int duration = 10;
 
-    public bool bouncyActive = false;
-
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "player")
+        if (other.gameObject.tag == "Player")
         {
-            bouncyActive = true;
+            Debug.Log("Activate bouncy");
+            HighScoreManager.Instance.bouncyActive = true;
             Invoke(nameof(Deactivate), duration);
             Destroy(gameObject);
         }
@@ -24,6 +23,7 @@ public class BouncyBullets : MonoBehaviour
 
     void Deactivate()
     {
-        bouncyActive = false;
+        Debug.Log("Deactivate bouncy");
+        HighScoreManager.Instance.bouncyActive = false;
     }
 }

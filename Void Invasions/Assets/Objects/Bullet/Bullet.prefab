@@ -171,6 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6846b251435be54e8c8685d7b3cd6aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 10
   maxLifetime: 2
   bouncyBulletsPrefab: {fileID: 2253550233774245040, guid: 882b0af1844d68740a4c021eb139a9e9, type: 3}

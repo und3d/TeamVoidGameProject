@@ -12,6 +12,13 @@ public class HighScoreManager : MonoBehaviour
 
     public int Highscore;
 
+    public bool bouncyActive;
+    public bool doubleActive;
+    public bool instaKillActive;
+    public bool shieldActive;
+    public bool invincActive;
+    public bool weaponActive;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
