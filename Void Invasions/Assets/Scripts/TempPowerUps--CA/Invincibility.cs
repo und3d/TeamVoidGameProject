@@ -4,36 +4,21 @@ using UnityEngine;
 
 public class Invincibility : MonoBehaviour
 {
-    public float invincibilityDuration = 5f;
-    private bool isInvincible = false;
+    float duration;
 
-    // method to activate invincibility
-    public void ActivateInvincibility()
+    private void Awake()
     {
-        if (!isInvincible)
+        duration = HighScoreManager.Instance.upgradeDuration;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
         {
-            isInvincible = true;
-            StartCoroutine(InvincibilityCoroutine());
+            Debug.Log("Activate Invinc");
+            HighScoreManager.Instance.invincActive = true;
+            HighScoreManager.Instance.DeactivateInvinc();
+            Destroy(gameObject);
         }
-    }
-
-    // Coroutine to handle the duration of invincibility
-    private IEnumerator InvincibilityCoroutine()
-    {
-        yield return new WaitForSeconds(invincibilityDuration);
-
-        // Reset to normal state after the invincibility duration
-        isInvincible = false;
-    }
-
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
     }
 }

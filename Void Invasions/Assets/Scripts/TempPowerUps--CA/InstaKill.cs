@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class InstaKill : MonoBehaviour
 {
-    public float lifetime = 5f;
+    float duration;
 
-    void Start()
+    private void Awake()
     {
-        Destroy(gameObject, lifetime);
+        duration = HighScoreManager.Instance.upgradeDuration;
     }
 
-    void Update()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Activate Insta");
+            HighScoreManager.Instance.instaKillActive = true;
+            HighScoreManager.Instance.DeactivateInsta();
+            Destroy(gameObject);
+        }
     }
 }

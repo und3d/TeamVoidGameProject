@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         livesManager.LoseLife();
         player.canShoot = false;
 
-        if (livesManager.playerLives < 0)
+        if (HighScoreManager.Instance.currLives <= 0)
         {
             GameOver();
         }
@@ -46,8 +46,9 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        HighScoreManager.Instance.Highscore += HighScoreManager.Instance.currScore;
         GUI_Group.gameObject.SetActive(false);
         gameOverGroup.gameObject.SetActive(true);
-        GameOverText.text = $" GAME OVER \n\n TOTAL SCORE \n\n {HighScoreManager.Instance.Highscore} ";
+        GameOverText.text = $" GAME OVER \n\n TOTAL SCORE \n\n {HighScoreManager.Instance.currScore} ";
     }
 }

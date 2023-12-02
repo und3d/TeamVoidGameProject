@@ -23,12 +23,6 @@ public class Asteroid : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
-
-        /*        // If the asteroid is not already initialized, randomize its type.
-                if (!isInitialized)
-                {
-                    InitializeAsteroid(Random.Range(0, 3));
-                } */
     }
 
     public void SetAsteroidProperties(int newType)
@@ -48,24 +42,18 @@ public class Asteroid : MonoBehaviour
         Destroy(this.gameObject, this.maxLifeTime);     //Destroys asteroid after specified amount of time
     }
 
-    /*    // helper function to set the initial properties of the asteroid based on its type
-        private void InitializeAsteroid(int newType)
-        {
-            type = newType;
-            size = asteroidSizes[type];
-            speed = asteroidSpeeds[type];
-            isInitialized = true;
-        } */
-
     //Collision between Asteroid and Bullet
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            TempAsteroidSplitting splittingScript = GetComponent<TempAsteroidSplitting>();
-            if (splittingScript != null)
+            if (!HighScoreManager.Instance.instaKillActive)
             {
-                splittingScript.SplitAsteroid();
+                TempAsteroidSplitting splittingScript = GetComponent<TempAsteroidSplitting>();
+                if (splittingScript != null)
+                {
+                    splittingScript.SplitAsteroid();
+                }
             }
 
             HighScoreManager highScoreManager = HighScoreManager.Instance;

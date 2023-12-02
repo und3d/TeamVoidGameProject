@@ -8,7 +8,13 @@ public class BouncyBullets : MonoBehaviour
     public float lifetime = 3f;
     public int maxBounces = 3;
     public int bounces = 0;
-    public int duration = 10;
+
+    float duration;
+
+    private void Awake()
+    {
+        duration = HighScoreManager.Instance.upgradeDuration;
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -16,14 +22,10 @@ public class BouncyBullets : MonoBehaviour
         {
             Debug.Log("Activate bouncy");
             HighScoreManager.Instance.bouncyActive = true;
-            Invoke(nameof(Deactivate), duration);
+            HighScoreManager.Instance.DeactivateBouncy();
             Destroy(gameObject);
         }
     }
 
-    void Deactivate()
-    {
-        Debug.Log("Deactivate bouncy");
-        HighScoreManager.Instance.bouncyActive = false;
-    }
+    
 }

@@ -4,22 +4,18 @@ using UnityEngine.UI;
 public class LivesManager : MonoBehaviour
 {
     public Text livesText; // Reference to the UI Text component for displaying lives
-    public int startingLives = 3; // Adjust the starting lives as needed
 
-    public int playerLives;
-
-    private void Start()
+    private void Awake()
     {
-        playerLives = startingLives;
         UpdateLivesText();
     }
 
     public void LoseLife()
     {
-        playerLives--;
+        HighScoreManager.Instance.currLives--;
         UpdateLivesText();
 
-        if (playerLives <= 0)
+        if (HighScoreManager.Instance.currLives < 1)
         {
             // Handle game over or other logic when lives are exhausted
             // For example, you can restart the level or end the game.
@@ -29,6 +25,6 @@ public class LivesManager : MonoBehaviour
 
     private void UpdateLivesText()
     {
-        livesText.text = $"Lives: {playerLives}";
+        livesText.text = $"Lives: {HighScoreManager.Instance.currLives}";
     }
 }

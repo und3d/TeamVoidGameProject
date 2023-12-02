@@ -353,6 +353,20 @@ MonoBehaviour:
   deathSFX: {fileID: 8300000, guid: 4977839f2dc7a34408380811052cd865, type: 3}
   explosionSFX: {fileID: 8300000, guid: 7110fc451f3b732438ced98720684f02, type: 3}
   Highscore: 0
+  currScore: 0
+  totalLives: 3
+  currLives: 0
+  shootDelay: 0
+  pointPerAsteroid: 50
+  bouncyActive: 0
+  doubleActive: 0
+  instaKillActive: 0
+  shieldActive: 0
+  invincActive: 0
+  autoWeaponActive: 0
+  shotgunWeaponActive: 0
+  upgradeDuration: 100
+  buttonPressed: 0
 --- !u!82 &2125379965
 AudioSource:
   m_ObjectHideFlags: 0

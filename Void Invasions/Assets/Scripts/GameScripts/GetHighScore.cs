@@ -9,7 +9,7 @@ public class GetHighScore : MonoBehaviour
     public Text scoreText;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (HighScoreManager.Instance != null)
         {

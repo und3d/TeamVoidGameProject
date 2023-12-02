@@ -17,8 +17,10 @@ public class PlayerControls : MonoBehaviour
     public bool isAlive = true;
     public float shootDelay = 0.5f;
     public float respawnInvulnerability = 3f;
+    public float fullAutoFirerate = 0.2f;
 
     public static bool PointerDown = false;
+    private float nextFireTime;
 
     private void Start()
     {
@@ -37,6 +39,22 @@ public class PlayerControls : MonoBehaviour
         float vAxis = move.y;
         float zAxis = Mathf.Atan2(hAxis, vAxis) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0f, 0f, -zAxis);
+
+        if (HighScoreManager.Instance.autoWeaponActive && HighScoreManager.Instance.buttonPressed && (Time.time >= nextFireTime))
+        {
+            Debug.Log("Shoot bullet");
+            nextFireTime = Time.time + fullAutoFirerate;
+
+            if (isAlive && bulletPrefab != null)
+            {
+                HighScoreManager.Instance?.ShootSFX();
+                Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                if (bullet != null)
+                {
+                    bullet.Shoot(transform.up);
+                }
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -53,7 +71,7 @@ public class PlayerControls : MonoBehaviour
 
     public void ShootButtonPressed()
     {
-        if (canShoot)
+        if (canShoot && !(HighScoreManager.Instance.autoWeaponActive || HighScoreManager.Instance.shotgunWeaponActive))
         {
             Shoot();
         }
@@ -62,7 +80,7 @@ public class PlayerControls : MonoBehaviour
     public void Shoot()
     {
         canShoot = false;
-        if (isAlive && bulletPrefab != null)
+        if (isAlive && bulletPrefab != null) 
         {
             HighScoreManager.Instance?.ShootSFX();
             Invoke(nameof(CanShoot), shootDelay);
@@ -93,7 +111,7 @@ public class PlayerControls : MonoBehaviour
     //Collision with Asteroids
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Asteroid")
+        if (collision.gameObject.tag == "Asteroid" && !HighScoreManager.Instance.invincActive)
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = 0.0f;
