@@ -25,7 +25,6 @@ public class HighScoreManager : MonoBehaviour
     public bool shieldActive;
     public bool invincActive;
     public bool autoWeaponActive;
-    public bool shotgunWeaponActive;
     public float upgradeDuration = 20;
 
     public bool buttonPressed = false;
@@ -43,6 +42,17 @@ public class HighScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void DeactivateShield()
+    {
+        Invoke(nameof(TurnOffShield), upgradeDuration);
+    }
+
+    public void TurnOffShield()
+    {
+        Debug.Log("Deactivate Shield");
+        shieldActive = false;
     }
 
     public void DeactivateDouble()
@@ -76,17 +86,6 @@ public class HighScoreManager : MonoBehaviour
     {
         Debug.Log("Deactivate Auto Weapon");
         autoWeaponActive = false;
-    }
-
-    public void DeactivateShotgunWeapon()
-    {
-        Invoke(nameof(TurnOffShotgunWeapon), upgradeDuration);
-    }
-
-    public void TurnOffShotgunWeapon()
-    {
-        Debug.Log("Deactivate Shotgun Weapon");
-        shotgunWeaponActive = false;
     }
 
     public void DeactivateInvinc()

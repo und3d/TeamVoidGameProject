@@ -364,8 +364,7 @@ MonoBehaviour:
   shieldActive: 0
   invincActive: 0
   autoWeaponActive: 0
-  shotgunWeaponActive: 0
-  upgradeDuration: 100
+  upgradeDuration: 20
   buttonPressed: 0
 --- !u!82 &2125379965
 AudioSource:

@@ -13,7 +13,7 @@ public class DoublePoints : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Activate upgrade");
+            Debug.Log("Activate Double");
             HighScoreManager.Instance.doubleActive = true;
             HighScoreManager.Instance.DeactivateDouble();
             Destroy(gameObject);

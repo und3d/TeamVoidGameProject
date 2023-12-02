@@ -18,6 +18,7 @@ public class PlayerControls : MonoBehaviour
     public float shootDelay = 0.5f;
     public float respawnInvulnerability = 3f;
     public float fullAutoFirerate = 0.2f;
+    public int pellets = 5;
 
     public static bool PointerDown = false;
     private float nextFireTime;
@@ -71,7 +72,7 @@ public class PlayerControls : MonoBehaviour
 
     public void ShootButtonPressed()
     {
-        if (canShoot && !(HighScoreManager.Instance.autoWeaponActive || HighScoreManager.Instance.shotgunWeaponActive))
+        if (canShoot && !(HighScoreManager.Instance.autoWeaponActive))
         {
             Shoot();
         }

@@ -16,20 +16,9 @@ public class WeaponChange : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            coinFlip = Random.Range(1, 1);
-            switch(coinFlip)
-            {
-                case 1:
-                    Debug.Log("Activate Auto Weapon");
-                    HighScoreManager.Instance.autoWeaponActive = true;
-                    HighScoreManager.Instance.DeactivateAutoWeapon();
-                    break;
-                case 2:
-                    Debug.Log("Activate Shotgun Weapon");
-                    HighScoreManager.Instance.shotgunWeaponActive = true;
-                    HighScoreManager.Instance.DeactivateShotgunWeapon();
-                    break;
-            }
+            Debug.Log("Activate Auto Weapon");
+            HighScoreManager.Instance.autoWeaponActive = true;
+            HighScoreManager.Instance.DeactivateAutoWeapon();
             Destroy(gameObject);
         }
     }
