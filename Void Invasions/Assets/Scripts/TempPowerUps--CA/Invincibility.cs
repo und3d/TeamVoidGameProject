@@ -8,7 +8,8 @@ public class Invincibility : MonoBehaviour
 
     private void Awake()
     {
-        duration = HighScoreManager.Instance.upgradeDuration;
+        duration = HighScoreManager.Instance.powerUpDuration;
+        Destroy(gameObject, HighScoreManager.Instance.powerUpSpawnTimer);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

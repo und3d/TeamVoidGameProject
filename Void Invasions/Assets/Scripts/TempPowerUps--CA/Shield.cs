@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
+    private void Awake()
+    {
+        Destroy(gameObject, HighScoreManager.Instance.powerUpSpawnTimer);
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {

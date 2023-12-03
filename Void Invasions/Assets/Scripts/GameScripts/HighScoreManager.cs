@@ -22,7 +22,8 @@ public class HighScoreManager : MonoBehaviour
     public bool shieldActive;
     public bool invincActive;
     public bool autoWeaponActive;
-    public float upgradeDuration = 20;
+    public float powerUpDuration = 20;
+    public int powerUpSpawnTimer = 10;
     public int nukePoints = 1000;
 
     public bool buttonPressed = false;
@@ -57,7 +58,7 @@ public class HighScoreManager : MonoBehaviour
 
     public void DeactivateDouble()
     {
-        Invoke(nameof(TurnOffDouble), upgradeDuration);
+        Invoke(nameof(TurnOffDouble), powerUpDuration);
     }
 
     public void TurnOffDouble()
@@ -68,7 +69,7 @@ public class HighScoreManager : MonoBehaviour
 
     public void DeactivateBouncy()
     {
-        Invoke(nameof(TurnOffBouncy), upgradeDuration);
+        Invoke(nameof(TurnOffBouncy), powerUpDuration);
     }
 
     public void TurnOffBouncy()
@@ -79,7 +80,7 @@ public class HighScoreManager : MonoBehaviour
 
     public void DeactivateAutoWeapon()
     {
-        Invoke(nameof(TurnOffAutoWeapon), upgradeDuration);
+        Invoke(nameof(TurnOffAutoWeapon), powerUpDuration);
     }
 
     public void TurnOffAutoWeapon()
@@ -90,7 +91,7 @@ public class HighScoreManager : MonoBehaviour
 
     public void DeactivateInvinc()
     {
-        Invoke(nameof(TurnOffInvinc), upgradeDuration);
+        Invoke(nameof(TurnOffInvinc), powerUpDuration);
     }
 
     public void TurnOffInvinc()
@@ -101,7 +102,7 @@ public class HighScoreManager : MonoBehaviour
 
     public void DeactivateInsta()
     {
-        Invoke(nameof(TurnOffInsta), upgradeDuration);
+        Invoke(nameof(TurnOffInsta), powerUpDuration);
     }
 
     public void TurnOffInsta()
