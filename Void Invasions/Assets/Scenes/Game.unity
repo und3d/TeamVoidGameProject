@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 333386787}
   m_Layer: 0
   m_Name: AsteroidSpawner
-  m_TagString: Asteroid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2073,7 +2073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1375016989
 Transform:
   m_ObjectHideFlags: 0
@@ -2771,7 +2771,7 @@ GameObject:
   - component: {fileID: 100721599880252221}
   m_Layer: 5
   m_Name: Text (Legacy)(Score)
-  m_TagString: Untagged
+  m_TagString: ScoreManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -48,7 +48,7 @@ public class PlayerControls : MonoBehaviour
 
             if (isAlive && bulletPrefab != null)
             {
-                HighScoreManager.Instance?.ShootSFX();
+                SFX.Instance?.ShootSFX();
                 Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
                 if (bullet != null)
                 {
@@ -68,6 +68,7 @@ public class PlayerControls : MonoBehaviour
         {
             rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
         }
+
     }
 
     public void ShootButtonPressed()
@@ -83,7 +84,7 @@ public class PlayerControls : MonoBehaviour
         canShoot = false;
         if (isAlive && bulletPrefab != null) 
         {
-            HighScoreManager.Instance?.ShootSFX();
+            SFX.Instance?.ShootSFX();
             Invoke(nameof(CanShoot), shootDelay);
             Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
             if (bullet != null)
@@ -114,13 +115,20 @@ public class PlayerControls : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid" && !HighScoreManager.Instance.invincActive)
         {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = 0.0f;
-            isAlive = false;
-            this.gameObject.SetActive(false);
+            if (!HighScoreManager.Instance.shieldActive)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = 0.0f;
+                isAlive = false;
+                this.gameObject.SetActive(false);
 
-            gameManager.PlayerDied();
-            HighScoreManager.Instance?.PlayerDeath();
+                gameManager.PlayerDied();
+                SFX.Instance?.PlayerDeath();
+            }
+            else
+            {
+                HighScoreManager.Instance.shieldActive = false;
+            }
         }
     }
 }

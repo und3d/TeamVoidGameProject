@@ -22,7 +22,6 @@ public class RandomScript : MonoBehaviour
                 case > 0 and <= 25:         //Shield    25%
                     Debug.Log("Activate Shield");
                     HighScoreManager.Instance.shieldActive = true;
-                    HighScoreManager.Instance.DeactivateShield();
                     break;
                 case > 25 and <= 45:        //Weapon    20%
                     Debug.Log("Activate Auto Weapon");
@@ -40,6 +39,9 @@ public class RandomScript : MonoBehaviour
                     HighScoreManager.Instance.DeactivateDouble();
                     break;
                 case > 75 and <= 90:        //Nuke      15%
+                    Debug.Log("Activate Nuke");
+                    HighScoreManager.Instance.ActivateNuke();
+                    Destroy(gameObject);
                     break;
                 case > 90 and <= 95:        //Bouncy Bullets    5%
                     Debug.Log("Activate bouncy");

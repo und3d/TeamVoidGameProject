@@ -4,31 +4,14 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    public event System.Action OnShieldCollected; // using System added here
 
-    public float shieldDuration = 10f;
-    private bool hasShield = false;
-
-    public void ActivateShield()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!hasShield)
+        if (other.gameObject.tag == "Player")
         {
-            StartCoroutine(ShieldCoroutine());
-            OnShieldCollected?.Invoke();
+            Debug.Log("Activate Shield");
+            HighScoreManager.Instance.shieldActive = true;
+            Destroy(gameObject);
         }
-    }
-
-    private IEnumerator ShieldCoroutine()
-    {
-        hasShield = true;
-        yield return new WaitForSeconds(shieldDuration);
-        hasShield = false;
-        Destroy(gameObject);
-    }
-
-    // This method can be used to check if the shield is currently active
-    public bool HasShield()
-    {
-        return hasShield;
     }
 }

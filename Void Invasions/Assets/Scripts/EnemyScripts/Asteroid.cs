@@ -56,10 +56,10 @@ public class Asteroid : MonoBehaviour
                 }
             }
 
-            HighScoreManager highScoreManager = HighScoreManager.Instance;
-            if (highScoreManager != null)
+            SFX SFXManager = SFX.Instance;
+            if (SFXManager != null)
             {
-                highScoreManager.AsteroidExplosion();
+                SFXManager.AsteroidExplosion();
             }
             else
             {

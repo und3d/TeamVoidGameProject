@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1260988526277146300}
   - component: {fileID: 8020427067008032732}
   - component: {fileID: 8155736783939106997}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Invincibility
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
@@ -133,4 +133,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd97115e6688fff41ae7e0800c76d98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibilityDuration: 5

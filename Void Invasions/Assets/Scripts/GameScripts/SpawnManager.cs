@@ -9,48 +9,18 @@ public class RandomSpawner : MonoBehaviour
     [SerializeField] int _offsetX;
     [SerializeField] int _offsetY;
     [SerializeField] float _spawnDuration = 10f;
-    [SerializeField] int _spawnCountPerWave = 1;
-    [SerializeField] int _numberOfWaves = 1; // Adjust the number of waves as needed
+    GameObject upgrade;
 
-    List<GameObject> _spawnedObjects = new List<GameObject>();
-
-    void Start()
+    private void Awake()
     {
-        StartCoroutine(SpawnWaves());
-    }
-
-    void Update()
-    {
-        // You can add any other update logic here if needed
-    }
-
-    IEnumerator SpawnWaves()
-    {
-        for (int wave = 0; wave < _numberOfWaves; wave++)
-        {
-            yield return StartCoroutine(SpawnUpgrades());
-            yield return new WaitForSeconds(_spawnDuration);
-            ClearSpawnedObjects();
-        }
-
-        // Game over logic can be added here
-    }
-
-    IEnumerator SpawnUpgrades()
-    {
-        for (int i = 0; i < _spawnCountPerWave; i++)
-        {
-            Spawn();
-            yield return new WaitForSeconds(_spawnDuration / _spawnCountPerWave);
-        }
+        InvokeRepeating(nameof(Spawn), _spawnDuration, _spawnDuration);
     }
 
     void Spawn()
     {
-        GameObject upgrade = GetRandomUpgrade();      //Random.Range(0, _objects.Length);
+        upgrade = GetRandomUpgrade();
         Vector2 position = GetRandomCoordinates();
-        GameObject spawnedObject = Instantiate(upgrade, position, Quaternion.identity);
-        _spawnedObjects.Add(spawnedObject);
+        Instantiate(upgrade, position, Quaternion.identity);
     }
 
     Vector2 GetRandomCoordinates()
@@ -64,45 +34,35 @@ public class RandomSpawner : MonoBehaviour
         return screenToWorldPosition;
     }
 
-    void ClearSpawnedObjects()
-    {
-        foreach (var spawnedObject in _spawnedObjects)
-        {
-            Destroy(spawnedObject);
-        }
-        _spawnedObjects.Clear();
-    }
-
     GameObject GetRandomUpgrade()
     {
-        GameObject upgrade = Instantiate(gameObject);
 
         int objectNum = Random.Range(1, 81);
 
         switch(objectNum)
         {
-            case < 11 and >= 1:
+            case > 0 and <= 15:
                 upgrade = _objects[0];
                 break;
-            case < 21 and >= 11:
+            case > 15 and <= 30:
                 upgrade = _objects[1];
                 break;
-            case < 31 and >= 21:
+            case > 30 and <= 45:
                 upgrade = _objects[2];
                 break;
-            case < 41 and >= 31:
+            case > 45 and <= 60:
                 upgrade = _objects[3];
                 break;
-            case < 51 and >= 41:
+            case > 60 and <= 75:
                 upgrade = _objects[4];
                 break;
-            case < 61 and >= 51:
+            case > 75 and <= 90:
                 upgrade = _objects[5];
                 break;
-            case < 71 and >= 61:
+            case > 90 and <= 95:
                 upgrade = _objects[6];
                 break;
-            case < 81 and >= 71:
+            case > 95 and <= 100:
                 upgrade = _objects[7];
                 break;
         }

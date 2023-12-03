@@ -5,11 +5,8 @@ using UnityEngine.SceneManagement;
 public class HighScoreManager : MonoBehaviour
 {
     public static HighScoreManager Instance { get; private set; }
-    public AudioClip shootSFX;
-    public AudioClip deathSFX;
-    public AudioClip explosionSFX;
 
-    AudioSource audioSource;
+    GameObject scoreManager;
 
     public int Highscore;
     public int currScore;
@@ -26,13 +23,12 @@ public class HighScoreManager : MonoBehaviour
     public bool invincActive;
     public bool autoWeaponActive;
     public float upgradeDuration = 20;
+    public int nukePoints = 1000;
 
     public bool buttonPressed = false;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-
         if (Instance == null)
         {
             Instance = this;
@@ -44,15 +40,19 @@ public class HighScoreManager : MonoBehaviour
         }
     }
 
-    public void DeactivateShield()
+    public void ActivateNuke()
     {
-        Invoke(nameof(TurnOffShield), upgradeDuration);
-    }
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager");
+        // Add points to the player's score when the nuke is activated
+        scoreManager.GetComponent<ScoreManager>().AddPoints(nukePoints);
 
-    public void TurnOffShield()
-    {
-        Debug.Log("Deactivate Shield");
-        shieldActive = false;
+        // Find all game objects with the Asteroid tag and destroy them
+        GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
+
+        for (int i = 0; i < asteroids.Length; i++)
+        {
+            Destroy(asteroids[i]);
+        }
     }
 
     public void DeactivateDouble()
@@ -117,22 +117,5 @@ public class HighScoreManager : MonoBehaviour
 
         SceneManager.LoadScene("Game");
     }
-
-    public void AsteroidExplosion()
-    {
-        audioSource.clip = explosionSFX;
-        audioSource.PlayOneShot(explosionSFX);
-    }
-
-    public void ShootSFX()
-    {
-        audioSource.clip = shootSFX;
-        audioSource.PlayOneShot(shootSFX);
-    }
-
-    public void PlayerDeath()
-    {
-        audioSource.clip = deathSFX;
-        audioSource.PlayOneShot(deathSFX);
-    }
+    
 }

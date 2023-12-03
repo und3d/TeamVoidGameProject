@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8405407829612963607}
   - component: {fileID: 3423817629187554815}
   - component: {fileID: 2253550233774245040}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BouncyBullets
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
@@ -137,4 +137,3 @@ MonoBehaviour:
   lifetime: 10
   maxBounces: 3
   bounces: 0
-  duration: 20

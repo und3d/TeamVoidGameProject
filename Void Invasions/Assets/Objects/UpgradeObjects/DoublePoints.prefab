@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4837656401004104993}
   - component: {fileID: 3392693257764163395}
   - component: {fileID: 2332899384455442386}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DoublePoints
   m_TagString: PowerUp
   m_Icon: {fileID: 0}

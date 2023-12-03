@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - PowerUp
   - Border
+  - ScoreManager
   layers:
   - Default
   - TransparentFX
