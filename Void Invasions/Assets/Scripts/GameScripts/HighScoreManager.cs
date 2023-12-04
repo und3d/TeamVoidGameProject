@@ -22,8 +22,8 @@ public class HighScoreManager : MonoBehaviour
     public bool shieldActive;
     public bool invincActive;
     public bool autoWeaponActive;
-    public float powerUpDuration = 20;
-    public int powerUpSpawnTimer = 10;
+    public float powerUpDuration = 5;
+    public int powerUpSpawnTimer = 20;
     public int nukePoints = 1000;
 
     public bool buttonPressed = false;

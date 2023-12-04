@@ -4,7 +4,7 @@ public class Nuke : MonoBehaviour
 {
     private void Awake()
     {
-        Destroy(gameObject, HighScoreManager.Instance.powerUpSpawnTimer);
+        Destroy(gameObject, HighScoreManager.Instance.powerUpSpawnTimer * .75f);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

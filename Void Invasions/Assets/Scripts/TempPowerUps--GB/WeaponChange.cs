@@ -10,7 +10,7 @@ public class WeaponChange : MonoBehaviour
     private void Awake()
     {
         duration = HighScoreManager.Instance.powerUpDuration;
-        Destroy(gameObject, HighScoreManager.Instance.powerUpSpawnTimer);
+        Destroy(gameObject, HighScoreManager.Instance.powerUpSpawnTimer * .75f);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
