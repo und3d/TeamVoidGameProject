@@ -646,7 +646,8 @@ MonoBehaviour:
   shieldActive: 0
   invincActive: 0
   autoWeaponActive: 0
-  upgradeDuration: 20
+  powerUpDuration: 20
+  powerUpSpawnTimer: 10
   nukePoints: 1000
   buttonPressed: 0
 --- !u!1660057539 &9223372036854775807
