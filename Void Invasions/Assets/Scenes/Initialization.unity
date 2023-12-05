@@ -650,6 +650,9 @@ MonoBehaviour:
   powerUpSpawnTimer: 10
   nukePoints: 1000
   buttonPressed: 0
+  bossCounter: 0
+  bossScoreInterval: 15000
+  nextBossScore: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

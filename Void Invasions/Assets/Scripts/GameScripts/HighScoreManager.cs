@@ -28,6 +28,10 @@ public class HighScoreManager : MonoBehaviour
 
     public bool buttonPressed = false;
 
+    public int bossCounter = 0;
+    public int bossScoreInterval = 1000;
+    public int nextBossScore;
+
     private void Awake()
     {
         if (Instance == null)
@@ -39,6 +43,8 @@ public class HighScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        nextBossScore = bossScoreInterval;
     }
 
     public void ActivateNuke()

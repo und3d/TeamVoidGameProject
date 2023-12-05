@@ -55,6 +55,7 @@ public class BossManager : MonoBehaviour
             }
             else
             {
+                HighScoreManager.Instance.nextBossScore = HighScoreManager.Instance.currScore + HighScoreManager.Instance.bossScoreInterval;
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
             }
         }

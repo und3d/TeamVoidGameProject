@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour
 {
     public Text scoreText;  // Score Text
-    public int bossScore = 1000;
     public float doublePointsDuration = 10.0f;  // Duration for double points
 
-    private void Start()
+    private void Awake()
     {
         UpdateScoreText();  // Updating Score Text
     }
@@ -27,7 +26,7 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = $"Score: {HighScoreManager.Instance.currScore}";
         Debug.Log($"Current score: {HighScoreManager.Instance.currScore}");
 
-        if (HighScoreManager.Instance.currScore >= bossScore && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Game"))
+        if (HighScoreManager.Instance.currScore >= (HighScoreManager.Instance.nextBossScore) && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Game"))
         {
             SceneManager.LoadScene("Asteroid Boss");
         }
