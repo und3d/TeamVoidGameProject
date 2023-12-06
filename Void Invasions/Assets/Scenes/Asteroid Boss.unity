@@ -2569,7 +2569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f446865218662954196f5010499cf789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossHealth: 1
+  bossHealth: 100
   spawnRate: 1
   asteroidLauncher: {fileID: 519554372}
   healthText: {fileID: 2126120572}

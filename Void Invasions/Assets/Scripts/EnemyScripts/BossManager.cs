@@ -48,7 +48,7 @@ public class BossManager : MonoBehaviour
             Debug.Log("Collision");
             if (bossHealth > 1)
             {
-                bossHealth -= 1;
+                bossHealth -= 2;
                 UpdateHealthText();
                 Debug.Log(bossHealth);
                 Destroy(other.gameObject);
