@@ -8,7 +8,6 @@ public class radiusCollisions : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collision detected");
         if (other.gameObject.tag == "Asteroid" || other.gameObject.tag == "Player")
         {
             ObjsInRadius.Add(other.gameObject);
@@ -17,7 +16,6 @@ public class radiusCollisions : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Collision exit");
         if (other.gameObject.tag == "Asteroid" || other.gameObject.tag == "Player")
         {
             ObjsInRadius.Remove(other.gameObject);

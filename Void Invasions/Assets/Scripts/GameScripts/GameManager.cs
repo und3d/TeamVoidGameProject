@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        HighScoreManager.Instance.Highscore += HighScoreManager.Instance.currScore;
+        HighScoreManager.Instance.TotalScore += HighScoreManager.Instance.currScore;
         GUI_Group.gameObject.SetActive(false);
         gameOverGroup.gameObject.SetActive(true);
         GameOverText.text = $" GAME OVER \n\n TOTAL SCORE \n\n {HighScoreManager.Instance.currScore} ";

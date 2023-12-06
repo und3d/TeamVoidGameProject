@@ -8,7 +8,7 @@ public class HighScoreManager : MonoBehaviour
 
     GameObject scoreManager;
 
-    public int Highscore;
+    public int TotalScore;
     public int currScore;
     public int totalLives = 3;
     public int currLives;
@@ -31,6 +31,10 @@ public class HighScoreManager : MonoBehaviour
     public int bossCounter = 0;
     public int bossScoreInterval = 1000;
     public int nextBossScore;
+
+    public int shootDelayLevel = 0;
+    public int powerUpDurLevel = 0;
+    public int powerUpSpawnLevel = 0;
 
     private void Awake()
     {
@@ -69,7 +73,6 @@ public class HighScoreManager : MonoBehaviour
 
     public void TurnOffDouble()
     {
-        Debug.Log("Deactivate Double");
         doubleActive = false;
     }
 
@@ -80,7 +83,6 @@ public class HighScoreManager : MonoBehaviour
 
     public void TurnOffBouncy()
     {
-        Debug.Log("Deactivate Bouncy");
         bouncyActive = false;
     }
 
@@ -91,7 +93,6 @@ public class HighScoreManager : MonoBehaviour
 
     public void TurnOffAutoWeapon()
     {
-        Debug.Log("Deactivate Auto Weapon");
         autoWeaponActive = false;
     }
 
@@ -102,7 +103,6 @@ public class HighScoreManager : MonoBehaviour
 
     public void TurnOffInvinc()
     {
-        Debug.Log("Deactivate Invinc");
         invincActive = false;
     }
 
@@ -113,7 +113,6 @@ public class HighScoreManager : MonoBehaviour
 
     public void TurnOffInsta()
     {
-        Debug.Log("Deactivate Insta");
         instaKillActive = false;
     }
 
@@ -124,5 +123,4 @@ public class HighScoreManager : MonoBehaviour
 
         SceneManager.LoadScene("Game");
     }
-    
 }

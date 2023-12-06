@@ -634,11 +634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91bfd74c5cbad924084169e380fb0bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Highscore: 0
+  TotalScore: 0
   currScore: 0
   totalLives: 3
   currLives: 0
-  shootDelay: 0
+  shootDelay: 0.5
   pointPerAsteroid: 50
   bouncyActive: 0
   doubleActive: 0
@@ -646,13 +646,16 @@ MonoBehaviour:
   shieldActive: 0
   invincActive: 0
   autoWeaponActive: 0
-  powerUpDuration: 20
-  powerUpSpawnTimer: 10
+  powerUpDuration: 5
+  powerUpSpawnTimer: 20
   nukePoints: 1000
   buttonPressed: 0
   bossCounter: 0
   bossScoreInterval: 15000
   nextBossScore: 0
+  shootDelayLevel: 0
+  powerUpDurLevel: 0
+  powerUpSpawnLevel: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
