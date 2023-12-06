@@ -27,19 +27,19 @@ public class Asteroid : MonoBehaviour
 
     public void SetAsteroidProperties(int newType)
     {
-        SetVariables(this.astDirection, asteroidSpeeds[newType], asteroidSizes[newType], newType);
+        SetVariables(astDirection, asteroidSpeeds[newType], asteroidSizes[newType], newType);
     }
 
     //Variables set in the spawner script
     public void SetVariables(Vector2 direction, int speed, float size, int setType)
     {
-        this.astDirection = direction;
+        astDirection = direction;
         _rigidbody.AddForce(direction * speed);         //Sets the speed of the asteroid
         transform.localScale = Vector3.one * size;      //Sets the size of the asteroid based on it's type (determined in spawner script)
         isInitialized = true;
         type = setType;
 
-        Destroy(this.gameObject, this.maxLifeTime);     //Destroys asteroid after specified amount of time
+        Destroy(gameObject, maxLifeTime);     //Destroys asteroid after specified amount of time
     }
 
     //Collision between Asteroid and Bullet
@@ -61,19 +61,23 @@ public class Asteroid : MonoBehaviour
             {
                 SFXManager.AsteroidExplosion();
             }
-            else
-            {
-                Debug.LogError("HighScoreManager is null!");
-            }
 
             ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
             if (scoreManager != null)
             {
-                scoreManager.AddPoints(100);
-            }
-            else
-            {
-                Debug.LogError("ScoreManager not found!");
+                switch(type)
+                {
+                    case 0:
+                        score = 75;
+                        break;
+                    case 1:
+                        score = 50;
+                        break;
+                    case 2:
+                        score = 25;
+                        break;
+                }
+                scoreManager.AddPoints(score);
             }
 
             Destroy(gameObject);
