@@ -35,7 +35,7 @@ public class PowerUpSpawnDelay : MonoBehaviour
     // method to update the level text in the ui
     private void UpdateLevelText()
     {
-        levelText.text = upgradeName + ": Level " + currentLevel; // set the text to display the current level
+        levelText.text = upgradeName + ": Level " + currentLevel + "\nCost: " + costPerLevel; // set the text to display the current level
         scoreText.text = $"Score: {HighScoreManager.Instance.TotalScore}";
     }
 }
