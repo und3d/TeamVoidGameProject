@@ -25,9 +25,13 @@ public class Asteroid : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public void SetAsteroidProperties(int newType)
+    public void SetAsteroidProperties(int setType)
     {
-        SetVariables(astDirection, asteroidSpeeds[newType], asteroidSizes[newType], newType);
+        transform.localScale = Vector3.one * asteroidSizes[setType];      //Sets the size of the asteroid based on it's type (determined in spawner script)
+        isInitialized = true;
+        type = setType;
+
+        Destroy(gameObject, maxLifeTime);     //Destroys asteroid after specified amount of time
     }
 
     //Variables set in the spawner script
