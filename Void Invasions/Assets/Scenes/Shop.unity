@@ -1253,7 +1253,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149100438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9063.354}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.84241486, y: 0.84241486, z: 0.84241486}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1995,8 +1995,8 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 129576322}
   - {fileID: 1881138713}
   - {fileID: 565447034}
   - {fileID: 538860493}
   - {fileID: 532218495}
+  - {fileID: 129576322}
